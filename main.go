@@ -6,22 +6,18 @@ import (
 	"fmt"
 	"log"
 	"strings"
-
-	"github.com/sashabaranov/go-openai"
 )
 
-type MainContext struct {
-	client *openai.Client
-	model  string
-}
-
 func main() {
-	targetModel := "openai/gpt-oss-20b"
-	// targetModel := "google/gemini-2.5-flash"
-	// targetModel := "google/gemini-2.5-pro"
-	// targetModel := "deepseek/deepseek-chat-v3.1"
-	// targetModel := "google/gemma-3-27b-it"
-	// targetModel := "google/gemma-3-12b-it"
+	targetModel := "openai/gpt-oss-120b" // 35/46
+	// targetModel := "google/gemini-2.5-flash" // 25/47
+	// targetModel := "google/gemini-2.5-pro" // 38/47
+	// targetModel := "deepseek/deepseek-chat-v3.1" // 27/47
+	// targetModel := "google/gemma-3-27b-it" // 27/46
+	// targetModel := "google/gemma-3-12b-it" // 22/47
+	// targetModel := "qwen/qwen3-coder-30b-a3b-instruct" // 20/46
+
+	fmt.Println("* Using model '" + targetModel + "'")
 
 	mainContext := types.MainContext{
 		Client: types.GetClient(),

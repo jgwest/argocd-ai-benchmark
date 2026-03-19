@@ -3,8 +3,10 @@ package types
 import (
 	"context"
 	"fmt"
+	"io"
 	"log"
 	"math"
+	"net/http"
 	"os"
 	"slices"
 	"strings"
@@ -20,11 +22,33 @@ type MainContext struct {
 func RunTestOnFile(toEvaluateParam Evaluation, mainContext MainContext) (int, int, error) {
 	checksRun := 0
 
+	// markdownContents, err := downloadURL("https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/app_deletion.md")
+	// if err != nil {
+	// 	log.Panic("unable to download from URL", err)
+	// }
+
 	checksPassed := 0
-	fmt.Println("[", toEvaluateParam.initial.name, "|", toEvaluateParam.initial.labels, "]")
+	fmt.Println("[", toEvaluateParam.initial.name, "| labels: ", toEvaluateParam.initial.labels, "]")
 
-	promptText := TrimIndent(toEvaluateParam.initial.prompt)
+	var promptText string
 
+	// promptText := "The following is reference information which may be useful:\n" + markdownContents + "\nEnd reference information.\n\n\n"
+	promptText += TrimIndent(toEvaluateParam.initial.prompt)
+
+	promptText = strings.TrimSpace(promptText)
+
+	switch toEvaluateParam.initial.promptType {
+	case promptType_TrueOrFalse:
+		promptText += "\n\nProvide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false).\n"
+	case promptType_MultipleChoice:
+		promptText += "\n\nProvide ONLY the answer. The answer will be a single letter from the multiple-choice list.\n"
+	case promptType_Generic:
+	// no-op
+	default:
+		return 0, 0, fmt.Errorf("unrecognized prompt type")
+	}
+
+	fmt.Println()
 	lines := strings.Split(promptText, "\n")
 	for _, line := range lines {
 		fmt.Println("> " + line)
@@ -53,9 +77,18 @@ func RunTestOnFile(toEvaluateParam Evaluation, mainContext MainContext) (int, in
 
 		// Sanitize all expected answers
 		expectedSanitized := make([]string, len(toEvaluateParam.exactAnswers))
-		for i, answer := range toEvaluateParam.exactAnswers {
-			expectedSanitized[i] = sanitizeString(answer)
-			fmt.Println("- Expected:", expectedSanitized[i])
+
+		if len(toEvaluateParam.exactAnswers) == 1 {
+			expectedSanitized[0] = sanitizeString(toEvaluateParam.exactAnswers[0])
+			fmt.Println("- Expected:", expectedSanitized[0])
+		} else {
+			fmt.Println("Expected one of:")
+			for i, answer := range toEvaluateParam.exactAnswers {
+				expectedSanitized[i] = sanitizeString(answer)
+				fmt.Println("-", expectedSanitized[i])
+			}
+			fmt.Println()
+
 		}
 
 		// Check if response matches any of the expected answers
@@ -186,4 +219,26 @@ func ExistsAnyFocused(param []Evaluation) bool {
 	}
 
 	return false
+}
+
+func downloadURL(url string) (string, error) {
+
+	// Send an HTTP GET request to the URL.
+	resp, err := http.Get(url)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	// Read the response body.
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return "", err
+	}
+
+	// Convert the body to a string and print it.
+	content := string(body)
+	return content, nil
 }
