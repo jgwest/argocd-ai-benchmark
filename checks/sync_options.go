@@ -2,7 +2,7 @@ package checks
 
 import "argocd-ai-benchmark/types"
 
-var _ = types.DefinePreInitial("tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/'",
+var _ = types.FDefinePreInitial("tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/'",
 	types.Labels("simple")).
 	ResourceURLs("https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md").Start(func() {
 

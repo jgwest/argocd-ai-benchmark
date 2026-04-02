@@ -1,74 +1,116 @@
 package types
 
 import (
-	"context"
 	"fmt"
-	"io"
 	"log"
-	"math"
-	"net/http"
-	"os"
 	"slices"
 	"strings"
-
-	"github.com/sashabaranov/go-openai"
 )
 
 type MainContext struct {
-	Client *openai.Client
-	Model  string
+	Model                  string
+	ExternalResourceCache  map[string]string
+	AllowExternalResources bool
+	PrintReasoning         bool
 }
 
-func RunTestOnFile(toEvaluateParam Evaluation, mainContext MainContext) (int, int, error) {
-	checksRun := 0
+type TestRunResult struct {
+	ChecksPassed int
+	ChecksRun    int
+	Usage        Usage
+}
 
-	// markdownContents, err := downloadURL("https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/app_deletion.md")
-	// if err != nil {
-	// 	log.Panic("unable to download from URL", err)
-	// }
+func RunTestOnFile(toEvaluateParam Evaluation, mainContext MainContext) (TestRunResult, error) {
 
-	checksPassed := 0
+	var res TestRunResult
+
+	var markdownContents []string
+
+	if mainContext.AllowExternalResources {
+		for _, resourceURL := range toEvaluateParam.initial.resourceURLS {
+
+			markdownContentsFromURL, err := getExternalContent(resourceURL, mainContext.ExternalResourceCache)
+			if err != nil {
+				log.Panic("unable to download from URL", err)
+			}
+			markdownContents = append(markdownContents, markdownContentsFromURL)
+			fmt.Println()
+		}
+	}
+
+	// checksPassed := 0
 	fmt.Println("[", toEvaluateParam.initial.name, "| labels: ", toEvaluateParam.initial.labels, "]")
 
 	var promptText string
 
-	// promptText := "The following is reference information which may be useful:\n" + markdownContents + "\nEnd reference information.\n\n\n"
-	promptText += TrimIndent(toEvaluateParam.initial.prompt)
+	promptText += trimIndent(toEvaluateParam.initial.prompt)
 
-	promptText = strings.TrimSpace(promptText)
+	promptText = strings.TrimSpace(promptText) + "\n\n"
 
 	switch toEvaluateParam.initial.promptType {
 	case promptType_TrueOrFalse:
-		promptText += "\n\nProvide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false).\n"
+		promptText += "Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false).\n"
 	case promptType_MultipleChoice:
-		promptText += "\n\nProvide ONLY the answer. The answer will be a single letter from the multiple-choice list.\n"
+		promptText += "Provide ONLY the answer. The answer will be a single letter from the multiple-choice list.\n"
 	case promptType_Generic:
 	// no-op
 	default:
-		return 0, 0, fmt.Errorf("unrecognized prompt type")
+		return res, fmt.Errorf("unrecognized prompt type")
 	}
-
 	fmt.Println()
 	lines := strings.Split(promptText, "\n")
 	for _, line := range lines {
 		fmt.Println("> " + line)
 	}
 
-	var conversationHistory []openai.ChatCompletionMessage
+	if len(markdownContents) > 0 && mainContext.AllowExternalResources {
 
-	// Add user message to conversation history
-	conversationHistory = append(conversationHistory, openai.ChatCompletionMessage{
-		Role:    openai.ChatMessageRoleUser,
-		Content: promptText,
-	})
+		fmt.Println("> (reference text)")
 
-	// Get response from AI
-	response, err := chatWithHistory(mainContext, conversationHistory)
-	if err != nil {
-		return 0, 0, err
+		promptText += "--------------------------------------------------------------\n"
+		promptText += "The following is reference material which may help to answer the above question. All text below is not part of the question.\n"
+		promptText += "\n"
+
+		for _, markdownContent := range markdownContents {
+			promptText += markdownContent + "\n"
+			promptText += "-----------------------------------------\n"
+		}
+
+		promptText += "--------------------------------------------------------------\n"
+		promptText += "This is the end of the reference material."
+		promptText += "\n"
 	}
 
-	responseSanitized := sanitizeString(response)
+	var conversationHistory []string
+
+	conversationHistory = append(conversationHistory, promptText)
+
+	// Get response from AI
+	response, usage, err := chatWithHistory(mainContext, conversationHistory)
+	if err != nil {
+		return res, err
+	}
+
+	responseSanitized := sanitizeString(response.Content)
+
+	if mainContext.PrintReasoning {
+
+		output := ""
+
+		for _, toolCall := range response.ToolCalls {
+			output += fmt.Sprintln("-", toolCall)
+		}
+
+		if response.Reasoning != "" {
+			output += fmt.Sprintln("-", response.Reasoning)
+		}
+
+		if output != "" {
+			fmt.Println("Reasoning:")
+			fmt.Println(output)
+		}
+	}
+
 	fmt.Println("A:", responseSanitized)
 
 	matches := false
@@ -98,112 +140,48 @@ func RunTestOnFile(toEvaluateParam Evaluation, mainContext MainContext) (int, in
 		}
 
 	} else {
-		return 0, 0, fmt.Errorf("missing evaluation: %v", toEvaluateParam)
+		return res, fmt.Errorf("missing evaluation: %v", toEvaluateParam)
 	}
 
 	if matches {
-		checksPassed++
+		res.ChecksPassed++
 		fmt.Println("- PASS")
 	} else {
 		fmt.Println("- FAIL")
 	}
 
 	// Add AI response to conversation history
-	conversationHistory = append(conversationHistory, openai.ChatCompletionMessage{
-		Role:    openai.ChatMessageRoleAssistant,
-		Content: response,
-	})
+	conversationHistory = append(conversationHistory, response.Content)
 
-	checksRun++
+	res.ChecksRun++
 
-	return checksPassed, checksRun, nil
+	res.Usage = *usage
+
+	return res, nil
 }
 
-// TrimIndent removes common leading whitespace from each line of a string.
-func TrimIndent(s string) string {
+func getExternalContent(url string, cache map[string]string) (string, error) {
 
-	// Split the string into lines.
-	lines := strings.Split(s, "\n")
-
-	// Find the minimum indentation of non-empty lines.
-	minIndent := math.MaxInt32
-	for _, line := range lines {
-		if len(strings.TrimSpace(line)) == 0 {
-			continue // Skip empty lines
-		}
-
-		indent := 0
-		for _, r := range line {
-			if r == ' ' || r == '\t' {
-				indent++
-			} else {
-				break
-			}
-		}
-
-		if indent < minIndent {
-			minIndent = indent
-		}
+	val, inCache := cache[url]
+	if inCache {
+		fmt.Println("* Retrieving content from '" + url + "' [cached]")
+		return val, nil
 	}
 
-	// If no indented lines were found, return the original string.
-	if minIndent == math.MaxInt32 {
-		return s
+	fmt.Println("* Retrieving content from '" + url)
+	markdownContents, err := downloadURL(url)
+	if err != nil {
+		return "", fmt.Errorf("unable to download URL: '%s'. error: %v", url, err)
 	}
 
-	var trimmedLines []string
-	for _, line := range lines {
-		if len(line) > minIndent {
-			trimmedLines = append(trimmedLines, line[minIndent:])
-		} else {
-			trimmedLines = append(trimmedLines, line)
-		}
-	}
+	cache[url] = markdownContents
 
-	// Join the lines back together.
-	return strings.Join(trimmedLines, "\n")
+	return markdownContents, nil
 }
-
 func sanitizeString(str string) string {
 	str = strings.ToLower(str)
 	str = strings.TrimSpace(str)
 	return str
-}
-
-// chatWithHistory performs a chat completion with full conversation history
-func chatWithHistory(mainContext MainContext, messages []openai.ChatCompletionMessage) (string, error) {
-	ctx := context.Background()
-
-	resp, err := mainContext.Client.CreateChatCompletion(
-		ctx,
-		openai.ChatCompletionRequest{
-			Model:    mainContext.Model,
-			Messages: messages,
-		},
-	)
-
-	if err != nil {
-		return "", err
-	}
-
-	if len(resp.Choices) != 1 {
-		return "", fmt.Errorf("unexpected number of choices: %v", resp.Choices)
-	}
-
-	return resp.Choices[0].Message.Content, nil
-}
-
-func GetClient() *openai.Client {
-	apiKey := os.Getenv("OPENROUTER_API_KEY")
-	if apiKey == "" {
-		log.Fatal("Please set OPENROUTER_API_KEY environment variable")
-	}
-
-	config := openai.DefaultConfig(apiKey)
-	config.BaseURL = "https://openrouter.ai/api/v1"
-	client := openai.NewClientWithConfig(config)
-
-	return client
 }
 
 func IsFocused(e Evaluation) bool {
@@ -219,26 +197,4 @@ func ExistsAnyFocused(param []Evaluation) bool {
 	}
 
 	return false
-}
-
-func downloadURL(url string) (string, error) {
-
-	// Send an HTTP GET request to the URL.
-	resp, err := http.Get(url)
-	if err != nil {
-		fmt.Println("Error:", err)
-		return "", err
-	}
-	defer resp.Body.Close()
-
-	// Read the response body.
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Println("Error:", err)
-		return "", err
-	}
-
-	// Convert the body to a string and print it.
-	content := string(body)
-	return content, nil
 }

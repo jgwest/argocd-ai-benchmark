@@ -43,11 +43,12 @@ func (pi PreInitial) Start(f func()) any {
 }
 
 type Initial struct {
-	name       string
-	labels     []string
-	prompt     string
-	focus      bool
-	promptType promptType
+	name         string
+	labels       []string
+	prompt       string
+	focus        bool
+	resourceURLS []string
+	promptType   promptType
 }
 
 func (m Initial) Name(nameParam string) Initial {
@@ -129,12 +130,14 @@ func FDefine(name string, labelsParam []string) Initial {
 func Define(name string, labelsParam []string) Initial {
 
 	res := Initial{
-		name:       globalState.name + " -> " + name,
-		labels:     []string{},
-		focus:      globalState.Focus,
-		promptType: promptType_Generic,
+		name:         globalState.name + " -> " + name,
+		labels:       []string{},
+		focus:        globalState.Focus,
+		promptType:   promptType_Generic,
+		resourceURLS: globalState.resourceURLs,
 	}
 
+	// evaluations can also add labels, in addition to those defined at file scope
 	res.labels = append(res.labels, globalState.labels...)
 	res.labels = mergeStringSlices(res.labels, labelsParam)
 
