@@ -1,8 +1,8 @@
-package checks
+package evaluations
 
 import "argocd-ai-benchmark/types"
 
-var _ = types.FDefinePreInitial("tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/'",
+var _ = types.DefinePreInitial("tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/'",
 	types.Labels("simple")).
 	ResourceURLs("https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md").Start(func() {
 
@@ -138,6 +138,97 @@ var _ = types.FDefinePreInitial("tests from 'https://argo-cd.readthedocs.io/en/s
 
 	// Server-Side Apply --------------------------------------------------------
 
-	// JGW-TODO: stopped here
+	types.Define("'argocd.argoproj.io/sync-options: ServerSideApply=true' annotation can be used to enable server side apply", types.Labels()).Prompt(`
+		I am using Argo CD to deploy resources to my kubernetes cluster.
 
+		What is the name of the Argo CD annotation that I can add to an individual resource's '.metadata.annotations' field, to trigger server side apply for that resource?
+
+		Provide ONLY the answer. The answer is the name and value of the annotation to add. Dont quote the answer or use markdown.
+		`).Execute().
+		ExactAnswers("argocd.argoproj.io/sync-options: ServerSideApply=true").
+		Evaluate()
+
+	types.Define("'argocd.argoproj.io/sync-options: ServerSideApply=false' annotation can be used to disable server side apply", types.Labels()).Prompt(`
+		I am using Argo CD to deploy resources to my kubernetes cluster.
+
+		What is the name of the Argo CD annotation that I can add to an individual resource's '.metadata.annotations' field, to disable server side apply for that resource (when the Application that resource is part of has it enabled?)
+
+		Provide ONLY the answer. The answer is the name and value of the annotation to add. Dont quote the answer or use markdown.
+		`).Execute().
+		ExactAnswers("argocd.argoproj.io/sync-options: ServerSideApply=false").
+		Evaluate()
+
+	types.Define("spec.syncPolicy.syncOptions[ServerSideApply=true] can be used to enabled server side apply", types.Labels()).Prompt(`
+
+			I am using Argo CD to deploy resources to my kubernetes cluster.
+
+			What is the name of the Argo CD sync option that I can add to Application's 'spec.syncPolicy.syncOptions' field, to use server side apply, when modifying resources that are out of sync.
+
+			Provide ONLY the answer. The answer is the name and value of the sync policy to add. Dont quote the answer or use markdown.`).Execute().ExactAnswers("ServerSideApply=true").Evaluate()
+
+	types.Define("Replace=true takes precedence over ServerSideApply=true", types.Labels()).TrueOrFalse(`
+
+		I am using Argo CD to deploy resources to my kubernetes cluster.
+
+		True or false: When deploying resources via Argo CD, the ServerSideApply=true sync option takes precedence over Replace=true sync option.`).Execute().ExactAnswers("F"). //  Replace=true takes precedence over ServerSideApply=true.
+		Evaluate()
+
+	types.Define("Argo CD can use server side apply to patch existing resources on the cluster that are not fully managed by Argo CD.", types.Labels()).TrueOrFalse(`
+		True or false: Argo CD does not currently support the patching of existing resources on the cluster that are not already fully managed by Argo CD.
+		`).Execute().
+		ExactAnswers("F"). // server side apply can be used to "[patch] existing resources on the cluster that are not fully managed by Argo CD."
+		Evaluate()
+
+	// Fail the sync if a shared resource is found -------------------------------
+	//
+	types.Define("FailOnSharedResource=true can be used to fail the sync if there are shared resources", types.Labels()).Prompt(`
+
+		I am using Argo CD to deploy resources to my kubernetes cluster.
+
+		What is the name of the Argo CD sync option that I can add to Application's 'spec.syncPolicy.syncOptions' field, to tell Argo CD to fail the sync operation if Argo CD detects that there are resources shared between multiple Argo CD Applications deploying to a cluster?
+
+		Provide ONLY the answer. The answer is the name and value of the sync policy to add. Dont quote the answer or use markdown.`).
+		Execute().
+		ExactAnswers("FailOnSharedResource=true").
+		Evaluate()
+
+	// Respect ignore differences configs ----------------------------------------
+
+	types.Define("RespectIgnoreDifferences can be enabled to respect ignore differences during sync", types.Labels()).Prompt(`
+
+		I am using Argo CD to deploy resources to my kubernetes cluster.
+
+		What is the name of the Argo CD sync option that I can add to Application's 'spec.syncPolicy.syncOptions' field, to tell Argo CD to consider the configurations made in the Application's '.spec.ignoreDifferences' field during the sync stage (that is, not JUST when computing the diff between the live and desired state).
+
+		Provide ONLY the answer. The answer is the name and value of the sync policy to add. Dont quote the answer or use markdown.`).
+		Execute().
+		ExactAnswers("RespectIgnoreDifferences=true").
+		Evaluate()
+
+	// Create Namespace ----------------------------------------------------------
+
+	types.Define("CreateNamespace=true will create a target namespace if needed", types.Labels()).Prompt(`
+
+		I am using Argo CD to deploy resources to my kubernetes cluster.
+
+		What is the name of the Argo CD sync option that I can add to Application's 'spec.syncPolicy.syncOptions' field, to tell Argo CD to create the namespace specified in the spec.destination.namespace if it doesn't exist?
+
+		Provide ONLY the answer. The answer is the name and value of the sync policy to add. Dont quote the answer or use markdown.`).
+		Execute().
+		ExactAnswers("RespectIgnoreDifferences=true").
+		Evaluate()
+
+	types.Define("namespace metadata can be specified via .spec.syncPolicy.managedNamespaceMetadata", types.Labels()).Prompt(`
+
+		I am using Argo CD to deploy resources to my kubernetes cluster.
+
+		What is the name of the Argo CD Application field that can be used to add labels/annotations to Namespaces that are created via the 'Namespace=True' sync option?
+
+		Provide ONLY the answer. The answer is the name of the field in the Argo CD Application resource. Dont quote the answer or use markdown.`).
+		Execute().
+		ExactAnswers(
+			"managedNamespaceMetadata",
+			"spec.syncPolicy.managedNamespaceMetadata",
+			".spec.syncPolicy.managedNamespaceMetadata").
+		Evaluate()
 })

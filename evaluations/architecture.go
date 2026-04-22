@@ -1,4 +1,4 @@
-package checks
+package evaluations
 
 import (
 	"argocd-ai-benchmark/types"

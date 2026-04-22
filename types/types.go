@@ -96,6 +96,10 @@ func (e Evaluation) Evaluate() {
 	globalState.globalEvaluations = append(globalState.globalEvaluations, e)
 }
 
+func (e Evaluation) Name() string {
+	return e.initial.name
+}
+
 type globalStateType struct {
 	// These fields should be reset by define():
 	name         string
@@ -149,7 +153,7 @@ func Labels(labels ...string) []string {
 	return labels
 }
 
-func Evaluations() []Evaluation {
+func AllEvaluations() []Evaluation {
 	return globalState.globalEvaluations
 }
 

@@ -1,4 +1,4 @@
-package checks
+package evaluations
 
 import (
 	"argocd-ai-benchmark/types"
@@ -115,7 +115,7 @@ var _ = types.DefinePreInitial("tests from 'https://argo-cd.readthedocs.io/en/st
 		ExactAnswers("--application-namespaces", "application-namespaces").
 		Evaluate()
 
-	types.Define("provide the exact parameter to add to enable feature for two namespaces", types.Labels()).
+	types.Define("provide the exact parameter to add to container, to enable feature for two namespaces", types.Labels()).
 		Prompt(`
 				I would like to enable the Argo CD feature 'applications in any namespace'. I would like to allow Argo CD to reconcile Argo CD Applications in namespaces 'ns-one' and 'ns-two'. What are the exact parameters that I should add to Argo CD Application Controller container, to enable it to use this feature with these namespaces.
 
@@ -123,8 +123,6 @@ var _ = types.DefinePreInitial("tests from 'https://argo-cd.readthedocs.io/en/st
 			`).Execute().
 		ExactAnswers("--application-namespaces=ns-one,ns-two"). // Gemini 2.5 Pro wrapped its answer in markdown; if this happens again, consider updating the prompt.
 		Evaluate()
-
-	// JGW-TODO: In order for an application to be managed and reconciled outside the Argo CD's control plane namespace, two prerequisites must match:
 
 	types.Define("provide the name of AppProject field that needs to be configured to enabled the feature", types.Labels()).
 		Prompt(`
@@ -159,5 +157,17 @@ var _ = types.DefinePreInitial("tests from 'https://argo-cd.readthedocs.io/en/st
 				True or false: It is perfectly fine to grant access to the argocd namespace within an Argo CD AppProject, as long as Argo CD is configured to allow this.`).Execute().
 		ExactAnswers("f").
 		Evaluate()
+
+	types.Define("A) applications in any namespace will be reconciled if both are true: must be listed as application namespaces via CLI param, AND in the .spec.sourceNamespaces in AppProject", types.Labels()).TrueOrFalse(`
+		True or false: In order for an application to be managed and reconciled outside the Argo CD's control plane namespace, the only thing that is required is to add the namespace '--application-namespaces' parameter to application controller and server workloads.
+
+		Once this parameter is added, Applications will be managed and reconciled within the named namespaces.`).Execute().
+		ExactAnswers("f").
+		Evaluate()
+
+	types.Define("B) applications in any namespace will be reconciled if both are true: applications must be listed as application namespaces via CLI param, AND in the .spec.sourceNamespaces in AppProject", types.Labels()).TrueOrFalse(`
+		True or false: In order for an application to be managed and reconciled outside the Argo CD's control plane namespace, the only thing that is required is for the AppProject named in the Application's '.spec.project' field to include that namespace in 'spec.sourceNamespaces'.
+
+		As long as the AppProject includes the namespace within 'spec.sourceNamespaces', the Application will be reconciled`).Execute().ExactAnswers("f").Evaluate()
 
 })

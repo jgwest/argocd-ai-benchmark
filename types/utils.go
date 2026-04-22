@@ -74,3 +74,18 @@ func trimIndent(s string) string {
 	// Join the lines back together.
 	return strings.Join(trimmedLines, "\n")
 }
+
+// outBuffer is a simple utility for generating multi-line strings
+type outBuffer struct {
+	out string
+}
+
+func (ob *outBuffer) println(stringParams ...any) {
+	ob.out += fmt.Sprintln(stringParams...)
+}
+
+func sanitizeString(str string) string {
+	str = strings.ToLower(str)
+	str = strings.TrimSpace(str)
+	return str
+}

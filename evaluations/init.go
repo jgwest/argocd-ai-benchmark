@@ -1,5 +1,5 @@
-package checks
+package evaluations
 
-func Init() {
+func AddEvaluations() {
 	// This causes the var initialization code in other files to run.
 }

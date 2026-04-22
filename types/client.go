@@ -10,7 +10,7 @@ import (
 	"os"
 )
 
-func chatWithHistory(mainContext MainContext, messages []string) (*Message, *Usage, error) {
+func chatWithHistory(modelName string, messages []string) (*Message, *Usage, error) {
 
 	apiKey := os.Getenv("OPENROUTER_API_KEY")
 	if apiKey == "" {
@@ -30,7 +30,7 @@ func chatWithHistory(mainContext MainContext, messages []string) (*Message, *Usa
 
 	// Define the request body
 	requestBody, err := json.Marshal(map[string]any{
-		"model":    mainContext.Model,
+		"model":    modelName,
 		"messages": messagesMap,
 		"usage": map[string]bool{
 			"include": true,
@@ -80,7 +80,7 @@ func chatWithHistory(mainContext MainContext, messages []string) (*Message, *Usa
 	}
 
 	if len(apiResponse.Choices) != 1 {
-		return nil, nil, fmt.Errorf("Unexpected choices parameter: %d", len(apiResponse.Choices))
+		return nil, nil, fmt.Errorf("Unexpected choices parameter: %v", string(body))
 	}
 
 	return &apiResponse.Choices[0].Message, &apiResponse.Usage, nil

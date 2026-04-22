@@ -2,44 +2,65 @@ package types
 
 import (
 	"fmt"
-	"log"
 	"slices"
 	"strings"
+	"sync"
 )
 
-type MainContext struct {
-	Model                  string
-	ExternalResourceCache  map[string]string
-	AllowExternalResources bool
-	PrintReasoning         bool
+type EvaluationConfiguration struct {
+	// Model is which model to evaluate (id from openrouter)
+	Model string
+
+	// ProvideExternalResources: if true, the model will be provided with the corresponding resources (for example, the relevant Argo CD documentation page) which it can consult in order to solve the question.
+	ProvideExternalResources bool
+
+	// PrintReasoning: some models will use intermediate "reasoning" tokens to "think" about the answer before answering. When true, these reasoning tokens will be printed for debug purposes.
+	PrintReasoning bool
+
+	// NumberOfWorkers is the number of concurrent requests made to OpenRouter. A value of 1 will run the evaluations sequentially, which can be helpful for debugging.
+	NumberOfWorkers int
 }
 
-type TestRunResult struct {
-	ChecksPassed int
-	ChecksRun    int
-	Usage        Usage
+type evalContext struct {
+	configuration EvaluationConfiguration
+	resourceCache *externalResourceCache
 }
 
-func RunTestOnFile(toEvaluateParam Evaluation, mainContext MainContext) (TestRunResult, error) {
+// externalResourceCache is a cache of the contents of external URLs (for example, Argo CD doc pages)
+type externalResourceCache struct {
+	sync.Mutex
 
-	var res TestRunResult
+	// externalResourceCache: key: URL of resource, value: contents of resource downloaded from URL
+	externalResourceCache map[string]string
+}
 
-	var markdownContents []string
+type EvaluationRunResult struct {
+	EvaluationsPassed int
+	EvaluationsRun    int
+	Usage             Usage
+}
 
-	if mainContext.AllowExternalResources {
+func runSingleEvaluation(toEvaluateParam Evaluation, mainContext evalContext) (EvaluationRunResult, string, error) {
+
+	var res EvaluationRunResult
+
+	var ob outBuffer
+
+	var markdownReferenceMaterial []string
+
+	if mainContext.configuration.ProvideExternalResources {
 		for _, resourceURL := range toEvaluateParam.initial.resourceURLS {
 
-			markdownContentsFromURL, err := getExternalContent(resourceURL, mainContext.ExternalResourceCache)
+			markdownContentsFromURL, err := mainContext.resourceCache.getExternalContent(resourceURL)
 			if err != nil {
-				log.Panic("unable to download from URL", err)
+				return EvaluationRunResult{}, ob.out, fmt.Errorf("unable to download from URL: %v", err)
 			}
-			markdownContents = append(markdownContents, markdownContentsFromURL)
-			fmt.Println()
+			markdownReferenceMaterial = append(markdownReferenceMaterial, markdownContentsFromURL)
+			ob.println()
 		}
 	}
 
-	// checksPassed := 0
-	fmt.Println("[", toEvaluateParam.initial.name, "| labels: ", toEvaluateParam.initial.labels, "]")
+	ob.println("[", toEvaluateParam.initial.name, "| labels: ", toEvaluateParam.initial.labels, "]")
 
 	var promptText string
 
@@ -49,29 +70,29 @@ func RunTestOnFile(toEvaluateParam Evaluation, mainContext MainContext) (TestRun
 
 	switch toEvaluateParam.initial.promptType {
 	case promptType_TrueOrFalse:
-		promptText += "Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false).\n"
+		promptText += "Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.\n"
 	case promptType_MultipleChoice:
-		promptText += "Provide ONLY the answer. The answer will be a single letter from the multiple-choice list.\n"
+		promptText += "Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.\n"
 	case promptType_Generic:
 	// no-op
 	default:
-		return res, fmt.Errorf("unrecognized prompt type")
+		return res, ob.out, fmt.Errorf("unrecognized prompt type")
 	}
-	fmt.Println()
-	lines := strings.Split(promptText, "\n")
-	for _, line := range lines {
-		fmt.Println("> " + line)
+	ob.println()
+	lines := strings.SplitSeq(promptText, "\n")
+	for line := range lines {
+		ob.println("> " + line)
 	}
 
-	if len(markdownContents) > 0 && mainContext.AllowExternalResources {
+	if len(markdownReferenceMaterial) > 0 && mainContext.configuration.ProvideExternalResources {
 
-		fmt.Println("> (reference text)")
+		ob.println("> (reference text)")
 
 		promptText += "--------------------------------------------------------------\n"
 		promptText += "The following is reference material which may help to answer the above question. All text below is not part of the question.\n"
 		promptText += "\n"
 
-		for _, markdownContent := range markdownContents {
+		for _, markdownContent := range markdownReferenceMaterial {
 			promptText += markdownContent + "\n"
 			promptText += "-----------------------------------------\n"
 		}
@@ -86,14 +107,14 @@ func RunTestOnFile(toEvaluateParam Evaluation, mainContext MainContext) (TestRun
 	conversationHistory = append(conversationHistory, promptText)
 
 	// Get response from AI
-	response, usage, err := chatWithHistory(mainContext, conversationHistory)
+	response, usage, err := chatWithHistory(mainContext.configuration.Model, conversationHistory)
 	if err != nil {
-		return res, err
+		return res, ob.out, fmt.Errorf("error on retrieving response: %v", err)
 	}
 
 	responseSanitized := sanitizeString(response.Content)
 
-	if mainContext.PrintReasoning {
+	if mainContext.configuration.PrintReasoning {
 
 		output := ""
 
@@ -106,12 +127,12 @@ func RunTestOnFile(toEvaluateParam Evaluation, mainContext MainContext) (TestRun
 		}
 
 		if output != "" {
-			fmt.Println("Reasoning:")
-			fmt.Println(output)
+			ob.println("Reasoning:")
+			ob.println(output)
 		}
 	}
 
-	fmt.Println("A:", responseSanitized)
+	ob.println("A:", responseSanitized)
 
 	matches := false
 
@@ -122,47 +143,50 @@ func RunTestOnFile(toEvaluateParam Evaluation, mainContext MainContext) (TestRun
 
 		if len(toEvaluateParam.exactAnswers) == 1 {
 			expectedSanitized[0] = sanitizeString(toEvaluateParam.exactAnswers[0])
-			fmt.Println("- Expected:", expectedSanitized[0])
+			ob.println("- Expected:", expectedSanitized[0])
 		} else {
 			fmt.Println("Expected one of:")
 			for i, answer := range toEvaluateParam.exactAnswers {
 				expectedSanitized[i] = sanitizeString(answer)
-				fmt.Println("-", expectedSanitized[i])
+				ob.println("-", expectedSanitized[i])
 			}
-			fmt.Println()
+			ob.println()
 
 		}
 
 		// Check if response matches any of the expected answers
 		if slices.Contains(expectedSanitized, responseSanitized) {
 			matches = true
-			fmt.Println("  Match:", responseSanitized)
+			ob.println("  Match:", responseSanitized)
 		}
 
 	} else {
-		return res, fmt.Errorf("missing evaluation: %v", toEvaluateParam)
+		return res, ob.out, fmt.Errorf("missing evaluation: %v", toEvaluateParam)
 	}
 
 	if matches {
-		res.ChecksPassed++
-		fmt.Println("- PASS")
+		res.EvaluationsPassed++
+		ob.println("- PASS")
 	} else {
-		fmt.Println("- FAIL")
+		ob.println("- FAIL")
 	}
 
 	// Add AI response to conversation history
 	conversationHistory = append(conversationHistory, response.Content)
 
-	res.ChecksRun++
+	res.EvaluationsRun++
 
 	res.Usage = *usage
 
-	return res, nil
+	return res, ob.out, nil
 }
 
-func getExternalContent(url string, cache map[string]string) (string, error) {
+func (cache *externalResourceCache) getExternalContent(url string) (string, error) {
 
-	val, inCache := cache[url]
+	cache.Lock()
+	defer cache.Unlock()
+
+	val, inCache := cache.externalResourceCache[url]
 	if inCache {
 		fmt.Println("* Retrieving content from '" + url + "' [cached]")
 		return val, nil
@@ -174,17 +198,16 @@ func getExternalContent(url string, cache map[string]string) (string, error) {
 		return "", fmt.Errorf("unable to download URL: '%s'. error: %v", url, err)
 	}
 
-	cache[url] = markdownContents
+	if cache.externalResourceCache == nil {
+		cache.externalResourceCache = map[string]string{}
+	}
+
+	cache.externalResourceCache[url] = markdownContents
 
 	return markdownContents, nil
 }
-func sanitizeString(str string) string {
-	str = strings.ToLower(str)
-	str = strings.TrimSpace(str)
-	return str
-}
 
-func IsFocused(e Evaluation) bool {
+func (e Evaluation) Focused() bool {
 	return e.initial.focus
 }
 
