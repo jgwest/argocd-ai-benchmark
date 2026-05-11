@@ -46,7 +46,7 @@ var _ = types.DefinePreInitial("tests from 'https://argo-cd.readthedocs.io/en/st
 
 	types.Define("T/F application-controller correctly configured via arg", types.Labels()).
 		TrueOrFalse(`
-				The following is a YAML manifest for the Argo CD Application Controller Component.:
+				The following is a YAML manifest for the Argo CD Application Controller Component:
 				` + "```" + `
 				apiVersion: apps/v1
 				kind: StatefulSet

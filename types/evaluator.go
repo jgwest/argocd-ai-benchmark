@@ -1,6 +1,7 @@
 package types
 
 import (
+	"argocd-ai-benchmark/client"
 	"fmt"
 	"slices"
 	"strings"
@@ -8,8 +9,10 @@ import (
 )
 
 type EvaluationConfiguration struct {
+	Client client.Client
+
 	// Model is which model to evaluate (id from openrouter)
-	Model string
+	// Model string
 
 	// ProvideExternalResources: if true, the model will be provided with the corresponding resources (for example, the relevant Argo CD documentation page) which it can consult in order to solve the question.
 	ProvideExternalResources bool
@@ -21,8 +24,8 @@ type EvaluationConfiguration struct {
 	NumberOfWorkers int
 }
 
-type evalContext struct {
-	configuration EvaluationConfiguration
+type EvalContext struct {
+	Configuration EvaluationConfiguration
 	resourceCache *externalResourceCache
 }
 
@@ -37,10 +40,10 @@ type externalResourceCache struct {
 type EvaluationRunResult struct {
 	EvaluationsPassed int
 	EvaluationsRun    int
-	Usage             Usage
+	Usage             client.ResponseUsage
 }
 
-func runSingleEvaluation(toEvaluateParam Evaluation, mainContext evalContext) (EvaluationRunResult, string, error) {
+func runSingleEvaluation(toEvaluateParam Evaluation, mainContext EvalContext) (EvaluationRunResult, string, error) {
 
 	var res EvaluationRunResult
 
@@ -48,7 +51,7 @@ func runSingleEvaluation(toEvaluateParam Evaluation, mainContext evalContext) (E
 
 	var markdownReferenceMaterial []string
 
-	if mainContext.configuration.ProvideExternalResources {
+	if mainContext.Configuration.ProvideExternalResources {
 		for _, resourceURL := range toEvaluateParam.initial.resourceURLS {
 
 			markdownContentsFromURL, err := mainContext.resourceCache.getExternalContent(resourceURL)
@@ -84,7 +87,7 @@ func runSingleEvaluation(toEvaluateParam Evaluation, mainContext evalContext) (E
 		ob.println("> " + line)
 	}
 
-	if len(markdownReferenceMaterial) > 0 && mainContext.configuration.ProvideExternalResources {
+	if len(markdownReferenceMaterial) > 0 && mainContext.Configuration.ProvideExternalResources {
 
 		ob.println("> (reference text)")
 
@@ -102,30 +105,18 @@ func runSingleEvaluation(toEvaluateParam Evaluation, mainContext evalContext) (E
 		promptText += "\n"
 	}
 
-	var conversationHistory []string
+	clientInstance := mainContext.Configuration.Client.NewInstance()
 
-	conversationHistory = append(conversationHistory, promptText)
-
-	// Get response from AI
-	response, usage, err := chatWithHistory(mainContext.configuration.Model, conversationHistory)
+	cr, err := clientInstance.SendMessage(promptText)
 	if err != nil {
-		return res, ob.out, fmt.Errorf("error on retrieving response: %v", err)
+		return EvaluationRunResult{}, "", fmt.Errorf("error on sending message: %v", err)
 	}
 
-	responseSanitized := sanitizeString(response.Content)
+	responseSanitized := sanitizeString(cr.ResponseContent)
 
-	if mainContext.configuration.PrintReasoning {
+	if mainContext.Configuration.PrintReasoning {
 
-		output := ""
-
-		for _, toolCall := range response.ToolCalls {
-			output += fmt.Sprintln("-", toolCall)
-		}
-
-		if response.Reasoning != "" {
-			output += fmt.Sprintln("-", response.Reasoning)
-		}
-
+		output := cr.ReasoningContent
 		if output != "" {
 			ob.println("Reasoning:")
 			ob.println(output)
@@ -145,7 +136,7 @@ func runSingleEvaluation(toEvaluateParam Evaluation, mainContext evalContext) (E
 			expectedSanitized[0] = sanitizeString(toEvaluateParam.exactAnswers[0])
 			ob.println("- Expected:", expectedSanitized[0])
 		} else {
-			fmt.Println("Expected one of:")
+			ob.println("Expected one of:")
 			for i, answer := range toEvaluateParam.exactAnswers {
 				expectedSanitized[i] = sanitizeString(answer)
 				ob.println("-", expectedSanitized[i])
@@ -171,12 +162,9 @@ func runSingleEvaluation(toEvaluateParam Evaluation, mainContext evalContext) (E
 		ob.println("- FAIL")
 	}
 
-	// Add AI response to conversation history
-	conversationHistory = append(conversationHistory, response.Content)
-
 	res.EvaluationsRun++
 
-	res.Usage = *usage
+	res.Usage = cr.Usage
 
 	return res, ob.out, nil
 }

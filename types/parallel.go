@@ -24,8 +24,8 @@ func RunEvaluationsInParallel(evaluations []Evaluation, configuration Evaluation
 		inputWorkChannel <- evaluation // Queue the work
 	}
 
-	mainContext := evalContext{
-		configuration: configuration,
+	mainContext := EvalContext{
+		Configuration: configuration,
 		resourceCache: &externalResourceCache{},
 	}
 
@@ -38,13 +38,14 @@ func RunEvaluationsInParallel(evaluations []Evaluation, configuration Evaluation
 				select {
 				case e := <-inputWorkChannel:
 
+					// runResult, outStr, err := runSingleEvaluation(e, mainContext)
 					runResult, outStr, err := runSingleEvaluation(e, mainContext)
 
 					fmt.Println(strings.Repeat("=", 50))
 
 					fmt.Println(outStr)
 					if err != nil {
-						log.Printf("Error running test on %v: %v", e.Name(), err)
+						log.Printf("Error running test on '%v': %v\n", e.Name(), err)
 					}
 
 					res := ExecutionResult{

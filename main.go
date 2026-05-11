@@ -1,14 +1,21 @@
 package main
 
 import (
+	"argocd-ai-benchmark/client"
+	"argocd-ai-benchmark/client/gemini"
+	"argocd-ai-benchmark/client/openrouter"
 	"argocd-ai-benchmark/evaluations"
 	"argocd-ai-benchmark/types"
 	"fmt"
+	"log"
+	"os"
 	"strings"
 	"time"
 )
 
 func main() {
+
+	// OpenRouter ----------------------------------------------------------------
 
 	// Reasoning (uses a large number of output tokens, BY DEFAULT):
 	// targetModel := "google/gemini-2.5-pro" // 38/47 ($1.25/$10)
@@ -21,16 +28,42 @@ func main() {
 	// targetModel := "deepseek/deepseek-chat-v3.1" // 27/47 ($0.20/$0.80)
 	// targetModel := "google/gemma-3-27b-it" // 27/69 | 52/69 ($0.09/$0.16)
 	// targetModel := "qwen/qwen3-coder-30b-a3b-instruct" // 20/46 ($0.06/$0.25)
-	targetModel := "google/gemma-3-12b-it" // 26/69 | 55/69 ($0.03/$0.10)
+	// targetModel := "google/gemma-3-12b-it" // 26/69 | 55/69 ($0.03/$0.10)
 	// targetModel := "ibm-granite/granite-4.0-h-micro" // 21/67 | 25/67 ($0.017/$0.11)
+
+	// Gemini --------------------------------------------------------------------
+	targetModel := "gemini-2.5-flash" // 45/79 | 74/79
+	// targetModel := "gemini-2.5-pro" // 66/79 | 74/79
+	// targetModel := "gemini-3-pro-preview" // 72/79 |
+	// targetModel := "gemini-2.5-flash-lite" // 34/79 | 67/79
+	// targetModel := "gemini-2.0-flash" // 41/79 | 69/79
+
+	// ---------------------------------------------------------------------------
 
 	fmt.Println("* Using model '" + targetModel + "'")
 
 	configuration := types.EvaluationConfiguration{
-		Model:                    targetModel,
-		ProvideExternalResources: false,
+		ProvideExternalResources: true,
 		PrintReasoning:           true,
 		NumberOfWorkers:          5,
+	}
+
+	openRouterAPIKey := os.Getenv("OPENROUTER_API_KEY")
+	geminiAPIKey := os.Getenv("GEMINI_API_KEY")
+
+	if openRouterAPIKey != "" {
+		configuration.Client = &openrouter.OpenRouterClient{
+			APIKey: openRouterAPIKey,
+			Model:  targetModel,
+		}
+	} else if geminiAPIKey != "" {
+		configuration.Client = &gemini.GeminiClient{
+			APIKey: geminiAPIKey,
+			Model:  targetModel,
+		}
+	} else {
+		log.Fatal("no API keys defined: OPENROUTER_API_KEY or GEMINI_API_KEY")
+		return
 	}
 
 	// Queue the work
@@ -42,7 +75,7 @@ func main() {
 	results := types.RunEvaluationsInParallel(allEvaluations, configuration)
 
 	// Calculate results
-	var aggregateUsage types.Usage
+	var aggregateUsage client.ResponseUsage
 	checksRun := 0
 	checksPassed := 0
 	checksError := 0
@@ -57,21 +90,20 @@ func main() {
 		checksRun += result.RunResult.EvaluationsRun
 		checksPassed += result.RunResult.EvaluationsPassed
 
-		aggregateUsage = types.MergeUsage(aggregateUsage, result.RunResult.Usage)
-
+		if aggregateUsage == nil {
+			aggregateUsage = result.RunResult.Usage
+		} else {
+			aggregateUsage = aggregateUsage.Aggregate(result.RunResult.Usage)
+		}
 	}
 
 	fmt.Println(strings.Repeat("=", 50))
 	fmt.Printf("Overall Results: Passed %d, Total %d\n", checksPassed, checksRun)
 	if checksError != 0 {
-		fmt.Printf("- WARNING: '%d' errors occurred", checksError)
+		fmt.Printf("- WARNING: '%d' errors occurred\n", checksError)
 	}
 
 	fmt.Println("Usage Details:")
-
-	fmt.Printf("- Prompt Tokens: %d\n", aggregateUsage.PromptTokens)
-	fmt.Printf("- Completion Tokens: %d\n", aggregateUsage.CompletionTokens)
-	fmt.Printf("- Total Tokens: %d\n", aggregateUsage.TotalTokens)
-	fmt.Printf("- Cost: $%.8f\n", aggregateUsage.Cost)
+	fmt.Print(aggregateUsage.GenerateReport())
 	fmt.Println("- Elapsed time:", time.Since(startTime).Truncate(time.Second))
 }

@@ -87,5 +87,12 @@ func (ob *outBuffer) println(stringParams ...any) {
 func sanitizeString(str string) string {
 	str = strings.ToLower(str)
 	str = strings.TrimSpace(str)
+
+	// Sometimes model will provide markdown answers, so we just strip them
+	if strings.HasPrefix(str, "`") && strings.HasSuffix(str, "`") {
+		str = strings.TrimPrefix(str, "`")
+		str = strings.TrimSuffix(str, "`")
+	}
+
 	return str
 }

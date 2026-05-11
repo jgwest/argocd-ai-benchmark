@@ -22,7 +22,7 @@ var _ = types.DefinePreInitial("tests from 'https://argo-cd.readthedocs.io/en/st
 		Prompt(`
 				I am using Argo CD to deploy resources to my kubernetes cluster. There is a kubernetes resource that I am deploying, which I don't want to be pruned except when I manually confirm it should be pruned.
 
-				What is the name of the Argo CD annotation that I can add to '.metadata.annotations' for a resource, to require manual confirmation before that resource is pruned?
+				What is the name of the Argo CD annotation that I can add to '.metadata.annotations' for a resource, to require manual confirmation before that resource is pruned? Provide the annotation specific to prune behaviour.
 
 				Provide ONLY the answer. The answer is the name and value of the annotation to add. Dont quote the answer or use markdown.`).Execute().
 		ExactAnswers("argocd.argoproj.io/sync-options: Prune=confirm").
@@ -215,7 +215,7 @@ var _ = types.DefinePreInitial("tests from 'https://argo-cd.readthedocs.io/en/st
 
 		Provide ONLY the answer. The answer is the name and value of the sync policy to add. Dont quote the answer or use markdown.`).
 		Execute().
-		ExactAnswers("RespectIgnoreDifferences=true").
+		ExactAnswers("CreateNamespace=true").
 		Evaluate()
 
 	types.Define("namespace metadata can be specified via .spec.syncPolicy.managedNamespaceMetadata", types.Labels()).Prompt(`

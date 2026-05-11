@@ -71,7 +71,10 @@ var _ = types.DefinePreInitial("tests from 'https://argo-cd.readthedocs.io/en/st
 
 			Only specify the name of the field and the value of the field. For example: "spec.source.directory.(key): (value)". Include BOTH the key and the value.
 
-		`).Execute().ExactAnswers("spec.source.directory.include: '*.yaml'", "spec.source.directory.include: \"*.yaml\"", "spec.source.directory.include: *.yaml").Evaluate()
+		`).Execute().ExactAnswers(
+		"spec.source.directory.include: '*.yaml'",
+		"spec.source.directory.include: \"*.yaml\"",
+		"spec.source.directory.include: *.yaml").Evaluate()
 
 	types.Define("exclude certain files via CLI", types.Labels()).Prompt(`
 		We are defining an Argo CD Application, and deploying plain manifests from a directory defined within a Git repository (a directory-type Argo CD Application).
@@ -82,13 +85,13 @@ var _ = types.DefinePreInitial("tests from 'https://argo-cd.readthedocs.io/en/st
 
 		What 'argocd cli' command line parameters can be added to 'argocd app set (appname)', in order to tell Argo CD to avoid deploying "*.json" files?
 
-		Specify only the name/value of the parameter. For example: ("--name value", without quotes)
+		Provide ONLY the answer: specify ONLY the name/value of the parameter. For example: "--name value", without quotes
 
 		`).Execute().ExactAnswers(
 		"--directory-exclude \"*.json\"",
 		"--directory-exclude '*.json'",
 		"--directory-exclude *.json",
-		// NOT VALID GLOB: "--directory-exclude \"{*.json}\"",
+		"--directory-exclude \"{*.json}\"",
 	).Evaluate()
 
 	types.Define("exclude certain files via spec field", types.Labels()).Prompt(`
@@ -110,12 +113,15 @@ var _ = types.DefinePreInitial("tests from 'https://argo-cd.readthedocs.io/en/st
 		// NOT VALID GLOB: "spec.source.directory.exclude: \"{*.json}\"",
 	).Evaluate()
 
-	// JGW-TODO: stopped here
+	types.Define("files can be marked with '+argocd:skip-file-rendering'", types.Labels()).Prompt(`
+		We are defining an Argo CD Application, and deploying plain manifests from a directory defined within a Git repository (a directory-type Argo CD Application).
 
-	// Skipping File Rendering
-	//
-	// In some cases, repositories may contain YAML files that resemble Kubernetes manifests because they include fields like apiVersion, kind, and metadata, but are not intended to be rendered or applied as actual Kubernetes resources. Examples include Helm values.yaml files or configuration snippets used by CI/CD pipelines.
-	// To prevent Argo CD from attempting to parse these files as manifests (which could result in errors), you can explicitly mark them to be skipped using a special comment directive:
-	// # +argocd:skip-file-rendering
+		Within the Git repository (that Argo CD is deploying) are files that resemble Kubernetes manifests, but are not intended to be deployed as Kubernetes resources. (For example, a Helm 'values.yaml' file.)
+
+		What comment can I add to these files to tell Argo CD to avoid attempting to deploy them?
+
+		Answer with only the name of the comment that can be applied to the file. Don't quote or use markdown.
+
+		`).Execute().ExactAnswers("+argocd:skip-file-rendering", "# +argocd:skip-file-rendering").Evaluate()
 
 })
