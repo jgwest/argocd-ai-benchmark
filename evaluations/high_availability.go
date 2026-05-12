@@ -2,7 +2,7 @@ package evaluations
 
 import "argocd-ai-benchmark/types"
 
-var _ = types.FDefinePreInitial("tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/'",
+var _ = types.DefinePreInitial("tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/'",
 	types.Labels("simple")).
 	ResourceURLs("https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md").Start(func() {
 
@@ -163,15 +163,15 @@ var _ = types.FDefinePreInitial("tests from 'https://argo-cd.readthedocs.io/en/s
 
 	types.Define("WORKQUEUE_BUCKET_SIZE env var", types.Labels()).
 		Prompt(`
-				In Argo CD, what is the name of the environment variable which enable a bucket-based rate limiter that prevents a large number of apps from being queued at the same time, and controls the size of that bucket?
+				In Argo CD, what is the name of the environment variable which enable a bucket-based rate limiter that prevents a large number of apps from being queued at the same time, and controls the size of that bucket? I am specifically looking for the name of the env var that controls the size of the that bucket.
 
 				Provide ONLY the answer. The answer is 1 word.`).Execute().
 		ExactAnswers("WORKQUEUE_BUCKET_SIZE").
 		Evaluate()
 
-	types.Define("WORKQUEUE_BUCKET_SIZE env var", types.Labels()).
+	types.Define("WORKQUEUE_BUCKET_QPS env var", types.Labels()).
 		Prompt(`
-				In Argo CD, what is the name of the environment variable which enable a bucket-based rate limiter that prevents a large number of apps from being queued at the same time, and controls the number of items that can be queried per second?
+				In Argo CD, what is the name of the environment variable which enable a bucket-based rate limiter that prevents a large number of apps from being queued at the same time, and controls the number of items that can be queried per second? I am specifically looking for the name of the env var that controls the number of items that can be queried per second.
 
 				Provide ONLY the answer. The answer is 1 word.`).Execute().
 		ExactAnswers("WORKQUEUE_BUCKET_QPS").

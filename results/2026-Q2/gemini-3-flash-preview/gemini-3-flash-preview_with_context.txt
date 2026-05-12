@@ -1,0 +1,2317 @@
+* Using model 'gemini-3-flash-preview'
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/app-any-namespace.md
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/' -> T/F cluster-scoped only | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m True or false: The 'applications in any namespace' feature of Argo CD can be used in either a cluster-scoped Argo CD instance, OR a namespace-scoped Argo CD instance.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/app-any-namespace.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/' -> T/F cluster-scoped only (reverse) | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m True or false: The 'applications in any namespace' feature of Argo CD can only be used in a cluster-scoped Argo CD instance.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mt[0m
+- Expected: [34mt[0m
+  Match: t
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/app-any-namespace.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/' -> T/F feature is not enabled by default | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m True or false: The 'applications in any namespace' feature of Argo CD must be explicitly enabled and configured appropriately (that is, it is not enabled by default).
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mt[0m
+- Expected: [34mt[0m
+  Match: t
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/app-any-namespace.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/' -> T/F feature is not enabled by default | labels:  [true-or-false simple] ]
+
+[2;1m>[22;22m True or false: The 'applications in any namespace' feature of Argo CD does not need to be explicitly enabled and configured, because it is enabled by default.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/app-any-namespace.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/' -> T/F argocd server needs to be configured for apps in any namespace | labels:  [true-or-false simple] ]
+
+[2;1m>[22;22m True or false: In order to enable the 'applications in any namespace' feature of Argo CD, you must enable it either via a container parameter, or via an environment variable, in the Argo CD API server component.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mthe provided reference material states that in order to enable the "applications in any namespace" feature, the `--application-namespaces` parameter must be added to both the `argocd-server` (the api server component) and the `argocd-application-controller` workloads. it also explains that these settings can be configured via container startup parameters or via the `argocd-cmd-params-cm` configmap. in a kubernetes environment, settings provided in the `argocd-cmd-params-cm` are typically injected into the argo cd components as environment variables. therefore, the statement that the feature must be enabled in the api server component via a parameter or an environment variable is a correct reflection of the requirements.
+
+t[0m
+- Expected: [34mt[0m
+- [31;1mFAIL[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/app-any-namespace.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/' -> T/F repo server does NOT need to be configured for apps in any namespace | labels:  [true-or-false simple] ]
+
+[2;1m>[22;22m True or false: In order to enable the 'applications in any namespace' feature of Argo CD, you must enable it either via a container parameter, or via an environment variable, in the Argo CD repository server component.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/app-any-namespace.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/' -> T/F application-controller correctly configured via arg | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m The following is a YAML manifest for the Argo CD Application Controller Component:
+[2;1m>[22;22m ```
+[2;1m>[22;22m apiVersion: apps/v1
+[2;1m>[22;22m kind: StatefulSet
+[2;1m>[22;22m metadata:
+[2;1m>[22;22m   name: argocd-application-controller
+[2;1m>[22;22m # (...)
+[2;1m>[22;22m spec:
+[2;1m>[22;22m   # (...)
+[2;1m>[22;22m   template:
+[2;1m>[22;22m     metadata:
+[2;1m>[22;22m       labels:
+[2;1m>[22;22m         app.kubernetes.io/name: argocd-application-controller
+[2;1m>[22;22m     spec:
+[2;1m>[22;22m       containers:
+[2;1m>[22;22m         - args:
+[2;1m>[22;22m           - /usr/local/bin/argocd-application-controller
+[2;1m>[22;22m           - --application-namespaces=one,two,three
+[2;1m>[22;22m         env:
+[2;1m>[22;22m           # (...)
+[2;1m>[22;22m       image: quay.io/argoproj/argocd:latest
+[2;1m>[22;22m       imagePullPolicy: Always
+[2;1m>[22;22m       name: argocd-application-controller
+[2;1m>[22;22m       # (...)
+[2;1m>[22;22m ```
+[2;1m>[22;22m True or false: This StatefulSet has correctly enabled the 'applications in any namespace feature' for namespaces one, two, and three.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mt[0m
+- [31;1mFAIL[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/app-any-namespace.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/' -> T/F application-controller configured with incorrect parameter should not be reported as correct configuration | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m The following is a YAML manifest for the Argo CD Application Controller Component:
+[2;1m>[22;22m ```
+[2;1m>[22;22m apiVersion: apps/v1
+[2;1m>[22;22m kind: StatefulSet
+[2;1m>[22;22m metadata:
+[2;1m>[22;22m   name: argocd-application-controller
+[2;1m>[22;22m # (...)
+[2;1m>[22;22m spec:
+[2;1m>[22;22m   # (...)
+[2;1m>[22;22m   template:
+[2;1m>[22;22m     metadata:
+[2;1m>[22;22m       labels:
+[2;1m>[22;22m         app.kubernetes.io/name: argocd-application-controller
+[2;1m>[22;22m     spec:
+[2;1m>[22;22m       containers:
+[2;1m>[22;22m         - args:
+[2;1m>[22;22m           - /usr/local/bin/argocd-application-controller
+[2;1m>[22;22m           - --app-namespaces=one,two,three
+[2;1m>[22;22m         env:
+[2;1m>[22;22m           # (...)
+[2;1m>[22;22m       image: quay.io/argoproj/argocd:latest
+[2;1m>[22;22m       imagePullPolicy: Always
+[2;1m>[22;22m       name: argocd-application-controller
+[2;1m>[22;22m       # (...)
+[2;1m>[22;22m ```
+[2;1m>[22;22m True or false: This StatefulSet has correctly enabled the 'applications in any namespace feature' for namespaces one, two, and three.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/app-any-namespace.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/' -> should be able to name the container parameter that is added to enable apps in any namespace | labels:  [simple] ]
+
+[2;1m>[22;22m When enabling the Argo CD feature 'applications in any namespace', what is the name of the parameter that should be added to Argo CD containers to enable this feature?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the name of the parameter.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33m--application-namespaces[0m
+Expected one of:
+- [34m--application-namespaces[0m
+- [34mapplication-namespaces[0m
+
+  Match: --application-namespaces
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/app-any-namespace.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/' -> provide the exact parameter to add to container, to enable feature for two namespaces | labels:  [simple] ]
+
+[2;1m>[22;22m I would like to enable the Argo CD feature 'applications in any namespace'. I would like to allow Argo CD to reconcile Argo CD Applications in namespaces 'ns-one' and 'ns-two'. What are the exact parameters that I should add to Argo CD Application Controller container, to enable it to use this feature with these namespaces.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the exact parameter value.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33m--application-namespaces=ns-one,ns-two[0m
+- Expected: [34m--application-namespaces=ns-one,ns-two[0m
+  Match: --application-namespaces=ns-one,ns-two
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/app-any-namespace.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/' -> provide the name of AppProject field that needs to be configured to enabled the feature | labels:  [simple] ]
+
+[2;1m>[22;22m I would like to enable the Argo CD feature 'applications in any namespace'. For this, I must modify Argo CD's AppProject resource.
+[2;1m>[22;22m What is the name of the field that I must modify in AppProject CR to enable this feature?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the name of the field.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33msourcenamespaces[0m
+Expected one of:
+- [34msourcenamespaces[0m
+- [34m.spec.sourcenamespaces[0m
+- [34mspec.sourcenamespaces[0m
+
+  Match: sourcenamespaces
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/app-any-namespace.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/' -> wildcards ARE supported via parameter | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m In Argo CD, the 'applications in any namespace' feature can be configured using the '--application-namespaces' parameter.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or false: The '--application-namespaces' parameter does not support wildcards. Only the specific namespaces listed will have their Applications reconciled.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/app-any-namespace.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/' -> provide name of argocd-cm-params-cm field to enable the feature | labels:  [simple] ]
+
+[2;1m>[22;22m I would like to enable the Argo CD feature 'applications in any namespace'. For this, I can modify Argo CD's ConfigMap argocd-cmd-params-cm. What is the name of the field I need to add to the ConfigMap to enable this feature?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the name of the field.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mapplication.namespaces[0m
+Expected one of:
+- [34mapplication.namespaces[0m
+- [34m.data.application.namespaces[0m
+- [34mdata.application.namespaces[0m
+
+  Match: application.namespaces
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/app-any-namespace.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/' -> never grant access to the argocd namespace within the AppProject. | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m True or false: It is perfectly fine to grant access to the argocd namespace within an Argo CD AppProject, as long as Argo CD is configured to allow this.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/app-any-namespace.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/' -> A) applications in any namespace will be reconciled if both are true: must be listed as application namespaces via CLI param, AND in the .spec.sourceNamespaces in AppProject | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m True or false: In order for an application to be managed and reconciled outside the Argo CD's control plane namespace, the only thing that is required is to add the namespace '--application-namespaces' parameter to application controller and server workloads.
+[2;1m>[22;22m 
+[2;1m>[22;22m Once this parameter is added, Applications will be managed and reconciled within the named namespaces.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/app-any-namespace.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/' -> B) applications in any namespace will be reconciled if both are true: applications must be listed as application namespaces via CLI param, AND in the .spec.sourceNamespaces in AppProject | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m True or false: In order for an application to be managed and reconciled outside the Argo CD's control plane namespace, the only thing that is required is for the AppProject named in the Application's '.spec.project' field to include that namespace in 'spec.sourceNamespaces'.
+[2;1m>[22;22m 
+[2;1m>[22;22m As long as the AppProject includes the namespace within 'spec.sourceNamespaces', the Application will be reconciled
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/app_deletion.md
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/app_deletion/' -> kubectl delete with no finalizer | labels:  [multiple-choice simple] ]
+
+[2;1m>[22;22m The following is an Argo CD Application:
+[2;1m>[22;22m ```
+[2;1m>[22;22m apiVersion: argoproj.io/v1alpha1
+[2;1m>[22;22m kind: Application
+[2;1m>[22;22m metadata:
+[2;1m>[22;22m   name: jgw-app
+[2;1m>[22;22m   namespace: jgw
+[2;1m>[22;22m spec:
+[2;1m>[22;22m   destination:
+[2;1m>[22;22m     namespace: jgw
+[2;1m>[22;22m     server: https://kubernetes.default.svc
+[2;1m>[22;22m   project: default
+[2;1m>[22;22m   source:
+[2;1m>[22;22m     path: kustomize-guestbook
+[2;1m>[22;22m     repoURL: https://github.com/argoproj/argocd-example-apps
+[2;1m>[22;22m     targetRevision: master
+[2;1m>[22;22m   syncPolicy:
+[2;1m>[22;22m     automated:
+[2;1m>[22;22m       prune: true
+[2;1m>[22;22m       selfHeal: true
+[2;1m>[22;22m ```
+[2;1m>[22;22m 
+[2;1m>[22;22m The Application is Synced and Healthy, and it is being used to deploy a number of resources to the cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m A user issues the following command:
+[2;1m>[22;22m ```
+[2;1m>[22;22m kubectl delete -n jgw application/jgw-app
+[2;1m>[22;22m ```
+[2;1m>[22;22m 
+[2;1m>[22;22m What happens to the resources that were deployed via the Argo CD Application:
+[2;1m>[22;22m A) The Application and all child resources of the Application are deleted.
+[2;1m>[22;22m B) The Application is deleted, but the child resources of the Application are not deleted.
+[2;1m>[22;22m C) The Application is deleted, but only the immediate child resources of the Application are deleted.
+[2;1m>[22;22m D) The Application is not deleted, because the child resources are not deleted.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mb[0m
+- Expected: [34mb[0m
+  Match: b
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/app_deletion.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/app_deletion/' -> kubectl delete with finalizer | labels:  [simple multiple-choice] ]
+
+[2;1m>[22;22m The following is an Argo CD Application:
+[2;1m>[22;22m ```
+[2;1m>[22;22m apiVersion: argoproj.io/v1alpha1
+[2;1m>[22;22m kind: Application
+[2;1m>[22;22m metadata:
+[2;1m>[22;22m   name: jgw-app
+[2;1m>[22;22m   namespace: jgw
+[2;1m>[22;22m   finalizers:
+[2;1m>[22;22m     - resources-finalizer.argocd.argoproj.io
+[2;1m>[22;22m spec:
+[2;1m>[22;22m   destination:
+[2;1m>[22;22m     namespace: jgw
+[2;1m>[22;22m     server: https://kubernetes.default.svc
+[2;1m>[22;22m   project: default
+[2;1m>[22;22m   source:
+[2;1m>[22;22m     path: kustomize-guestbook
+[2;1m>[22;22m     repoURL: https://github.com/argoproj/argocd-example-apps
+[2;1m>[22;22m     targetRevision: master
+[2;1m>[22;22m   syncPolicy:
+[2;1m>[22;22m     automated:
+[2;1m>[22;22m       prune: true
+[2;1m>[22;22m       selfHeal: true
+[2;1m>[22;22m ```
+[2;1m>[22;22m 
+[2;1m>[22;22m The Application is Synced and Healthy, and it is being used to deploy a number of resources to the cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m A user issues the following command:
+[2;1m>[22;22m ```
+[2;1m>[22;22m kubectl delete -n jgw application/jgw-app
+[2;1m>[22;22m ```
+[2;1m>[22;22m 
+[2;1m>[22;22m What happens to the resources that were deployed via the Argo CD Application:
+[2;1m>[22;22m A) The Application and all child resources of the Application are deleted.
+[2;1m>[22;22m B) The Application is deleted, but the child resources of the Application are not deleted.
+[2;1m>[22;22m C) The Application is deleted, but only the immediate child resources of the Application are deleted.
+[2;1m>[22;22m D) The Application is not deleted, because the child resources are not deleted.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33ma[0m
+- Expected: [34ma[0m
+  Match: a
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/app_deletion.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/app_deletion/' -> argocd app delete cascade=true with finalizer | labels:  [simple multiple-choice] ]
+
+[2;1m>[22;22m The following is an Argo CD Application:
+[2;1m>[22;22m ```
+[2;1m>[22;22m apiVersion: argoproj.io/v1alpha1
+[2;1m>[22;22m kind: Application
+[2;1m>[22;22m metadata:
+[2;1m>[22;22m   name: jgw-app
+[2;1m>[22;22m   namespace: jgw
+[2;1m>[22;22m spec:
+[2;1m>[22;22m   destination:
+[2;1m>[22;22m     namespace: jgw
+[2;1m>[22;22m     server: https://kubernetes.default.svc
+[2;1m>[22;22m   project: default
+[2;1m>[22;22m   source:
+[2;1m>[22;22m     path: kustomize-guestbook
+[2;1m>[22;22m     repoURL: https://github.com/argoproj/argocd-example-apps
+[2;1m>[22;22m     targetRevision: master
+[2;1m>[22;22m   syncPolicy:
+[2;1m>[22;22m     automated:
+[2;1m>[22;22m       prune: true
+[2;1m>[22;22m       selfHeal: true
+[2;1m>[22;22m ```
+[2;1m>[22;22m 
+[2;1m>[22;22m The Application is Synced and Healthy, and it is being used to deploy a number of resources to the cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m A user issues the following command:
+[2;1m>[22;22m ```
+[2;1m>[22;22m argocd app delete jgw-app --cascade
+[2;1m>[22;22m ```
+[2;1m>[22;22m 
+[2;1m>[22;22m What happens to the resources that were deployed via the Argo CD Application:
+[2;1m>[22;22m A) The Application and all child resources of the Application are deleted.
+[2;1m>[22;22m B) The Application is deleted, but the child resources of the Application are not deleted.
+[2;1m>[22;22m C) The Application is deleted, but only the immediate child resources of the Application are deleted.
+[2;1m>[22;22m D) The Application is not deleted, because the child resources are not deleted.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33ma[0m
+- Expected: [34ma[0m
+  Match: a
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/app_deletion.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/app_deletion/' -> argocd app delete with cascade=false | labels:  [simple multiple-choice] ]
+
+[2;1m>[22;22m The following is an Argo CD Application:
+[2;1m>[22;22m ```
+[2;1m>[22;22m apiVersion: argoproj.io/v1alpha1
+[2;1m>[22;22m kind: Application
+[2;1m>[22;22m metadata:
+[2;1m>[22;22m   name: jgw-app
+[2;1m>[22;22m   namespace: jgw
+[2;1m>[22;22m spec:
+[2;1m>[22;22m   destination:
+[2;1m>[22;22m     namespace: jgw
+[2;1m>[22;22m     server: https://kubernetes.default.svc
+[2;1m>[22;22m   project: default
+[2;1m>[22;22m   source:
+[2;1m>[22;22m     path: kustomize-guestbook
+[2;1m>[22;22m     repoURL: https://github.com/argoproj/argocd-example-apps
+[2;1m>[22;22m     targetRevision: master
+[2;1m>[22;22m   syncPolicy:
+[2;1m>[22;22m     automated:
+[2;1m>[22;22m       prune: true
+[2;1m>[22;22m       selfHeal: true
+[2;1m>[22;22m ```
+[2;1m>[22;22m 
+[2;1m>[22;22m The Application is Synced and Healthy, and it is being used to deploy a number of resources to the cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m A user issues the following command:
+[2;1m>[22;22m ```
+[2;1m>[22;22m argocd app delete jgw-app --cascade=false
+[2;1m>[22;22m ```
+[2;1m>[22;22m 
+[2;1m>[22;22m What happens to the resources that were deployed via the Argo CD Application:
+[2;1m>[22;22m A) The Application and all child resources of the Application are deleted.
+[2;1m>[22;22m B) The Application is deleted, but the child resources of the Application are not deleted.
+[2;1m>[22;22m C) The Application is deleted, but only the immediate child resources of the Application are deleted.
+[2;1m>[22;22m D) The Application is not deleted, because the child resources are not deleted.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mb[0m
+- Expected: [34mb[0m
+  Match: b
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/app_deletion.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/app_deletion/' -> remove finalizer via kubectl, then kubectl delete command | labels:  [simple multiple-choice] ]
+
+[2;1m>[22;22m The following is an Argo CD Application:
+[2;1m>[22;22m ```
+[2;1m>[22;22m apiVersion: argoproj.io/v1alpha1
+[2;1m>[22;22m kind: Application
+[2;1m>[22;22m metadata:
+[2;1m>[22;22m   name: jgw-app
+[2;1m>[22;22m   namespace: jgw
+[2;1m>[22;22m   finalizers:
+[2;1m>[22;22m     - resources-finalizer.argocd.argoproj.io
+[2;1m>[22;22m spec:
+[2;1m>[22;22m   destination:
+[2;1m>[22;22m     namespace: jgw
+[2;1m>[22;22m     server: https://kubernetes.default.svc
+[2;1m>[22;22m   project: default
+[2;1m>[22;22m   source:
+[2;1m>[22;22m     path: kustomize-guestbook
+[2;1m>[22;22m     repoURL: https://github.com/argoproj/argocd-example-apps
+[2;1m>[22;22m     targetRevision: master
+[2;1m>[22;22m   syncPolicy:
+[2;1m>[22;22m     automated:
+[2;1m>[22;22m       prune: true
+[2;1m>[22;22m       selfHeal: true
+[2;1m>[22;22m ```
+[2;1m>[22;22m 
+[2;1m>[22;22m The Application is Synced and Healthy, and it is being used to deploy a number of resources to the cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m A user issues the following commands:
+[2;1m>[22;22m ```
+[2;1m>[22;22m kubectl patch app jgw-app -n jgw -p '{"metadata": {"finalizers": null}}' --type merge
+[2;1m>[22;22m kubectl delete app jgw-app
+[2;1m>[22;22m ```
+[2;1m>[22;22m 
+[2;1m>[22;22m What happens to the resources that were deployed via the Argo CD Application:
+[2;1m>[22;22m A) The Application and all child resources of the Application are deleted.
+[2;1m>[22;22m B) The Application is deleted, but the child resources of the Application are not deleted.
+[2;1m>[22;22m C) The Application is deleted, but only the immediate child resources of the Application are deleted.
+[2;1m>[22;22m D) The Application is not deleted, because the child resources are not deleted.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mb[0m
+- Expected: [34mb[0m
+  Match: b
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/app_deletion.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/app_deletion/' -> add finalizer via kubectl, then kubectl delete command | labels:  [simple multiple-choice] ]
+
+[2;1m>[22;22m The following is an Argo CD Application:
+[2;1m>[22;22m ```
+[2;1m>[22;22m apiVersion: argoproj.io/v1alpha1
+[2;1m>[22;22m kind: Application
+[2;1m>[22;22m metadata:
+[2;1m>[22;22m   name: jgw-app
+[2;1m>[22;22m   namespace: jgw
+[2;1m>[22;22m spec:
+[2;1m>[22;22m   destination:
+[2;1m>[22;22m     namespace: jgw
+[2;1m>[22;22m     server: https://kubernetes.default.svc
+[2;1m>[22;22m   project: default
+[2;1m>[22;22m   source:
+[2;1m>[22;22m     path: kustomize-guestbook
+[2;1m>[22;22m     repoURL: https://github.com/argoproj/argocd-example-apps
+[2;1m>[22;22m     targetRevision: master
+[2;1m>[22;22m   syncPolicy:
+[2;1m>[22;22m     automated:
+[2;1m>[22;22m       prune: true
+[2;1m>[22;22m       selfHeal: true
+[2;1m>[22;22m ```
+[2;1m>[22;22m 
+[2;1m>[22;22m The Application is Synced and Healthy, and it is being used to deploy a number of resources to the cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m A user issues the following commands:
+[2;1m>[22;22m ```
+[2;1m>[22;22m kubectl patch app jgw-app -n jgw -p '{"metadata": {"finalizers": ["resources-finalizer.argocd.argoproj.io"]}}' --type merge
+[2;1m>[22;22m kubectl delete app jgw-app -n jgw
+[2;1m>[22;22m ```
+[2;1m>[22;22m 
+[2;1m>[22;22m What happens to the resources that were deployed via the Argo CD Application:
+[2;1m>[22;22m A) The Application and all child resources of the Application are deleted.
+[2;1m>[22;22m B) The Application is deleted, but the child resources of the Application are not deleted.
+[2;1m>[22;22m C) The Application is deleted, but only the immediate child resources of the Application are deleted.
+[2;1m>[22;22m D) The Application is not deleted, because the child resources are not deleted.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33ma[0m
+- Expected: [34ma[0m
+  Match: a
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/architecture.md
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/architecture/' -> RBAC enforcement | labels:  [simple multiple-choice] ]
+
+[2;1m>[22;22m Which Argo CD component does this description describe:
+[2;1m>[22;22m "RBAC enforcement"
+[2;1m>[22;22m 
+[2;1m>[22;22m A) API Server
+[2;1m>[22;22m B) Application Controller
+[2;1m>[22;22m C) Repository Server
+[2;1m>[22;22m D) None of the above
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33ma[0m
+- Expected: [34ma[0m
+  Match: a
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/architecture.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/architecture/' -> This component detects OutOfSync application state and optionally takes corrective action. | labels:  [simple multiple-choice] ]
+
+[2;1m>[22;22m Which Argo CD component does this description describe:
+[2;1m>[22;22m "This component detects OutOfSync application state and optionally takes corrective action."
+[2;1m>[22;22m 
+[2;1m>[22;22m A) API Server
+[2;1m>[22;22m B) Application Controller
+[2;1m>[22;22m C) Repository Server
+[2;1m>[22;22m D) None of the above
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mb[0m
+- Expected: [34mb[0m
+  Match: b
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/architecture.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/architecture/' -> This component is a gRPC/REST server which exposes the API consumed by the Web UI, CLI, and CI/CD systems. | labels:  [simple multiple-choice] ]
+
+[2;1m>[22;22m Which Argo CD component does this description describe:
+[2;1m>[22;22m "This component is a gRPC/REST server which exposes the API consumed by the Web UI, CLI, and CI/CD systems."
+[2;1m>[22;22m 
+[2;1m>[22;22m A) API Server
+[2;1m>[22;22m B) Application Controller
+[2;1m>[22;22m C) Repository Server
+[2;1m>[22;22m D) None of the above
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33ma[0m
+- Expected: [34ma[0m
+  Match: a
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/architecture.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/architecture/' -> authentication and auth delegation to external identity providers | labels:  [multiple-choice simple] ]
+
+[2;1m>[22;22m Which Argo CD component does this description describe:
+[2;1m>[22;22m "authentication and auth delegation to external identity providers"
+[2;1m>[22;22m 
+[2;1m>[22;22m A) API Server
+[2;1m>[22;22m B) Application Controller
+[2;1m>[22;22m C) Repository Server
+[2;1m>[22;22m D) None of the above
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33ma[0m
+- Expected: [34ma[0m
+  Match: a
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/architecture.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/architecture/' -> listener/forwarder for Git webhook events | labels:  [simple multiple-choice] ]
+
+[2;1m>[22;22m Which Argo CD component does this description describe:
+[2;1m>[22;22m "listener/forwarder for Git webhook events"
+[2;1m>[22;22m 
+[2;1m>[22;22m A) API Server
+[2;1m>[22;22m B) Application Controller
+[2;1m>[22;22m C) Repository Server
+[2;1m>[22;22m D) None of the above
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33ma[0m
+- Expected: [34ma[0m
+  Match: a
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/architecture.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/architecture/' -> This component is responsible for invoking any user-defined hooks for lifecycle events (PreSync, Sync, PostSync). | labels:  [simple multiple-choice] ]
+
+[2;1m>[22;22m Which Argo CD component does this description describe:
+[2;1m>[22;22m "This component is responsible for invoking any user-defined hooks for lifecycle events (PreSync, Sync, PostSync)."
+[2;1m>[22;22m 
+[2;1m>[22;22m A) API Server
+[2;1m>[22;22m B) Application Controller
+[2;1m>[22;22m C) Repository Server
+[2;1m>[22;22m D) None of the above
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mb[0m
+- Expected: [34mb[0m
+  Match: b
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/architecture.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/architecture/' -> This component is an internal service which maintains a local cache of the Git repository holding the application manifests. | labels:  [simple multiple-choice] ]
+
+[2;1m>[22;22m Which Argo CD component does this description describe:
+[2;1m>[22;22m "This component is an internal service which maintains a local cache of the Git repository holding the application manifests."
+[2;1m>[22;22m 
+[2;1m>[22;22m A) API Server
+[2;1m>[22;22m B) Application Controller
+[2;1m>[22;22m C) Repository Server
+[2;1m>[22;22m D) None of the above
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mc[0m
+- Expected: [34mc[0m
+  Match: c
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/architecture.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/architecture/' -> This component is a Kubernetes controller which continuously monitors running applications and compares the current, live state against the desired target state (as specified in the repo). | labels:  [simple multiple-choice] ]
+
+[2;1m>[22;22m Which Argo CD component does this description describe:
+[2;1m>[22;22m "This component is a Kubernetes controller which continuously monitors running applications and compares the current, live state against the desired target state (as specified in the repo)."
+[2;1m>[22;22m 
+[2;1m>[22;22m A) API Server
+[2;1m>[22;22m B) Application Controller
+[2;1m>[22;22m C) Repository Server
+[2;1m>[22;22m D) None of the above
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mb[0m
+- Expected: [34mb[0m
+  Match: b
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/architecture.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/architecture/' -> invoking of application operations (e.g. sync, rollback, user-defined actions) | labels:  [simple multiple-choice] ]
+
+[2;1m>[22;22m Which Argo CD component does this description describe:
+[2;1m>[22;22m "invoking of application operations (e.g. sync, rollback, user-defined actions)"
+[2;1m>[22;22m 
+[2;1m>[22;22m A) API Server
+[2;1m>[22;22m B) Application Controller
+[2;1m>[22;22m C) Repository Server
+[2;1m>[22;22m D) None of the above
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33ma[0m
+- Expected: [34ma[0m
+  Match: a
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/architecture.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/architecture/' -> repository and cluster credential management (stored as K8s secrets) | labels:  [multiple-choice simple] ]
+
+[2;1m>[22;22m Which Argo CD component does this description describe:
+[2;1m>[22;22m "repository and cluster credential management (stored as K8s secrets)"
+[2;1m>[22;22m 
+[2;1m>[22;22m A) API Server
+[2;1m>[22;22m B) Application Controller
+[2;1m>[22;22m C) Repository Server
+[2;1m>[22;22m D) None of the above
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33ma[0m
+- Expected: [34ma[0m
+  Match: a
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/architecture.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/architecture/' -> This component is responsible for generating and returning the Kubernetes manifests when provided the following inputs: repository URL, revision, application path, etc. | labels:  [simple multiple-choice] ]
+
+[2;1m>[22;22m Which Argo CD component does this description describe:
+[2;1m>[22;22m "This component is responsible for generating and returning the Kubernetes manifests when provided the following inputs: repository URL, revision, application path, etc."
+[2;1m>[22;22m 
+[2;1m>[22;22m A) API Server
+[2;1m>[22;22m B) Application Controller
+[2;1m>[22;22m C) Repository Server
+[2;1m>[22;22m D) None of the above
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mc[0m
+- Expected: [34mc[0m
+  Match: c
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/core_concepts.md
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/core_concepts/' -> refresh | labels:  [simple] ]
+
+[2;1m>[22;22m What Argo CD concept does this describe: When this is triggered, the latest resource state in Git is compared with the live state. determines what is different (but don't necessarily act on it just yet)
+[2;1m>[22;22m Provide ONLY the answer.
+[2;1m>[22;22m The answer is 1 word.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mrefresh[0m
+- Expected: [34mrefresh[0m
+  Match: refresh
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/core_concepts.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/core_concepts/' -> sync | labels:  [simple] ]
+
+[2;1m>[22;22m What Argo CD concept does this describe: The process of making an application move to its target state. E.g. by applying changes to a Kubernetes cluster.
+[2;1m>[22;22m Provide ONLY the answer.
+[2;1m>[22;22m The answer is 1 word.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33msync[0m
+- Expected: [34msync[0m
+  Match: sync
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/core_concepts.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/core_concepts/' -> sync status | labels:  [simple] ]
+
+[2;1m>[22;22m "Unknown", "Synced", and "OutOfSync" are an example of what Argo CD concept?
+[2;1m>[22;22m Provide ONLY the answer.
+[2;1m>[22;22m The answer is 2 words.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33msync status[0m
+- Expected: [34msync status[0m
+  Match: sync status
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/core_concepts.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/core_concepts/' -> health status | labels:  [simple] ]
+
+[2;1m>[22;22m "Unknown", "Progressing", "Healthy", "Suspended", "Degraded", and "Missing", are an example of what Argo CD concept?
+[2;1m>[22;22m Provide ONLY the answer.
+[2;1m>[22;22m The answer is 2 words.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mhealth status[0m
+Expected one of:
+- [34mapplication health[0m
+- [34mhealth status[0m
+
+  Match: health status
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/directory.md
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/directory/' -> directory-type Argo CD app will read yaml and JSON only | labels:  [simple multiple-choice] ]
+
+[2;1m>[22;22m A directory-type Argo CD Application will read plain manifest files contained within the git repository. Which file types will be interpreted as Kubernetes manifests?
+[2;1m>[22;22m A) .yml, .yaml
+[2;1m>[22;22m B) .yml, .yaml, .json
+[2;1m>[22;22m C) .yml, .yaml, .json, kustomize
+[2;1m>[22;22m D) .yml, .yaml, .json, kustomize, .jsonnet
+[2;1m>[22;22m E) None of the above
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer will be a single letter from the multiple-choice list. Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mb[0m
+- Expected: [34mb[0m
+  Match: b
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/directory.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/directory/' -> T/F don't need to add directory | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m When defining an Argo CD Application, and deploying plain manifests from a directory defined within a Git repository (a directory-type Argo CD Application):
+[2;1m>[22;22m 
+[2;1m>[22;22m True or false: It's unnecessary to explicitly add the 'spec.source.directory' field to Argo CD Application resource, except to add additional configuration options. Argo CD will automatically detect that the source repository/path contains plain manifest files.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mt[0m
+- Expected: [34mt[0m
+  Match: t
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/directory.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/directory/' -> T/F don't need to add directory (reverse) | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m When defining an Argo CD Application, and deploying plain manifests from a directory defined within a Git repository (a directory-type Argo CD Application):
+[2;1m>[22;22m 
+[2;1m>[22;22m True or false: It's necessary to explicitly add the 'spec.source.directory' field to Argo CD Application resource, whether or not additional configuration options are specified. If this field is not specified, Argo CD will not automatically detect that the source repository/path contains plain manifest files.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/directory.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/directory/' -> enable recursive directory via CLI | labels:  [simple] ]
+
+[2;1m>[22;22m We are defining an Argo CD Application, and deploying plain manifests from a directory defined within a Git repository (a directory-type Argo CD Application).
+[2;1m>[22;22m 
+[2;1m>[22;22m However, at present, in our Argo CD Application, Argo CD is NOT recursively reading resources across all directories in the Git repository.
+[2;1m>[22;22m 
+[2;1m>[22;22m What 'argocd cli' command line parameter can be added to 'argocd app set (appname)', in order to enable this recursive reading behaviour?
+[2;1m>[22;22m 
+[2;1m>[22;22m Specify only the name of the parameter. Do not specify any other text.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33m--directory-recurse[0m
+Expected one of:
+- [34m--directory-recurse[0m
+- [34mdirectory-recurse[0m
+
+  Match: --directory-recurse
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/directory.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/directory/' -> enable recursive directory via spec field | labels:  [simple] ]
+
+[2;1m>[22;22m We are defining an Argo CD Application, and deploying plain manifests from a directory defined within a Git repository (a directory-type Argo CD Application).
+[2;1m>[22;22m 
+[2;1m>[22;22m However, at present, in our Argo CD Application, Argo CD is NOT recursively reading resources across all directories in the Git repository.
+[2;1m>[22;22m 
+[2;1m>[22;22m What field can we enable in the Argo CD Application resource, in order to enable recursive reading of resources?
+[2;1m>[22;22m 
+[2;1m>[22;22m Specify only the name/value of the field. For example: "spec.source.directory.(key): (value)" (without quotes). Include BOTH the key and the value.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mspec.source.directory.recurse: true[0m
+- Expected: [34mspec.source.directory.recurse: true[0m
+  Match: spec.source.directory.recurse: true
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/directory.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/directory/' -> only including certain YAML files via CLI | labels:  [simple] ]
+
+[2;1m>[22;22m We are defining an Argo CD Application, and deploying plain manifests from a directory defined within a Git repository (a directory-type Argo CD Application).
+[2;1m>[22;22m 
+[2;1m>[22;22m However, at present, in our Argo CD Application, Argo CD is deploying files with types ".yaml", ".yml", and ".json". I only want Argo CD to deploy "*.yaml" files defined within that directory.
+[2;1m>[22;22m 
+[2;1m>[22;22m What 'argocd cli' command line parameters can be added to 'argocd app set (appname)', in order to tell Argo CD to only deploy YAML files?
+[2;1m>[22;22m 
+[2;1m>[22;22m Specify only the name of the parameter, and the value to that parameter. For example: ("--name value", without quotes).
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33m--directory-include "*.yaml"[0m
+Expected one of:
+- [34m--directory-include "*.yaml"[0m
+- [34m--directory-include *.yaml[0m
+
+  Match: --directory-include "*.yaml"
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/directory.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/directory/' -> only including certain YAML files via spec | labels:  [simple] ]
+
+[2;1m>[22;22m We are defining an Argo CD Application, and deploying plain manifests from a directory defined within a Git repository (a directory-type Argo CD Application).
+[2;1m>[22;22m 
+[2;1m>[22;22m However, at present, in our Argo CD Application, Argo CD is deploying files with types ".yaml", ".yml", and ".json". I only want Argo CD to deploy "*.yaml" files defined within that directory.
+[2;1m>[22;22m 
+[2;1m>[22;22m What field can we set in the Argo CD Application resource, in order to tell Argo CD to only deploy "*.yaml" files?
+[2;1m>[22;22m 
+[2;1m>[22;22m Only specify the name of the field and the value of the field. For example: "spec.source.directory.(key): (value)". Include BOTH the key and the value.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mspec.source.directory.include: "*.yaml"[0m
+Expected one of:
+- [34mspec.source.directory.include: '*.yaml'[0m
+- [34mspec.source.directory.include: "*.yaml"[0m
+- [34mspec.source.directory.include: *.yaml[0m
+
+  Match: spec.source.directory.include: "*.yaml"
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/directory.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/directory/' -> exclude certain files via CLI | labels:  [simple] ]
+
+[2;1m>[22;22m We are defining an Argo CD Application, and deploying plain manifests from a directory defined within a Git repository (a directory-type Argo CD Application).
+[2;1m>[22;22m 
+[2;1m>[22;22m However, at present, in our Argo CD Application, Argo CD is deploying files with types ".yaml", ".yml", and ".json".
+[2;1m>[22;22m 
+[2;1m>[22;22m I want to exclude Argo CD from deploying "*.json" files defined within that directory, while still continuing to deploy "*.yaml" and "*.yml".
+[2;1m>[22;22m 
+[2;1m>[22;22m What 'argocd cli' command line parameters can be added to 'argocd app set (appname)', in order to tell Argo CD to avoid deploying "*.json" files?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer: specify ONLY the name/value of the parameter. For example: "--name value", without quotes
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33m--directory-exclude "*.json"[0m
+Expected one of:
+- [34m--directory-exclude "*.json"[0m
+- [34m--directory-exclude '*.json'[0m
+- [34m--directory-exclude *.json[0m
+- [34m--directory-exclude "{*.json}"[0m
+
+  Match: --directory-exclude "*.json"
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/directory.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/directory/' -> exclude certain files via spec field | labels:  [simple] ]
+
+[2;1m>[22;22m We are defining an Argo CD Application, and deploying plain manifests from a directory defined within a Git repository (a directory-type Argo CD Application).
+[2;1m>[22;22m 
+[2;1m>[22;22m However, at present, in our Argo CD Application, Argo CD is deploying files with types ".yaml", ".yml", and ".json".
+[2;1m>[22;22m 
+[2;1m>[22;22m I want to exclude Argo CD from deploying "*.json" files defined within that directory, while still continuing to deploy "*.yaml" and "*.yml".
+[2;1m>[22;22m 
+[2;1m>[22;22m What field can we set in the Argo CD Application resource, in order to tell Argo CD to avoid deploying "*.json" files?
+[2;1m>[22;22m 
+[2;1m>[22;22m Specify only the name/value of the field. For example: "spec.source.directory.(key): (value)" (without quotes). Include BOTH the key and the value.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mspec.source.directory.exclude: *.json[0m
+Expected one of:
+- [34mspec.source.directory.exclude: "*.json"[0m
+- [34mspec.source.directory.exclude: '*.json'[0m
+- [34mspec.source.directory.exclude: *.json[0m
+
+  Match: spec.source.directory.exclude: *.json
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/directory.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/directory/' -> files can be marked with '+argocd:skip-file-rendering' | labels:  [simple] ]
+
+[2;1m>[22;22m We are defining an Argo CD Application, and deploying plain manifests from a directory defined within a Git repository (a directory-type Argo CD Application).
+[2;1m>[22;22m 
+[2;1m>[22;22m Within the Git repository (that Argo CD is deploying) are files that resemble Kubernetes manifests, but are not intended to be deployed as Kubernetes resources. (For example, a Helm 'values.yaml' file.)
+[2;1m>[22;22m 
+[2;1m>[22;22m What comment can I add to these files to tell Argo CD to avoid attempting to deploy them?
+[2;1m>[22;22m 
+[2;1m>[22;22m Answer with only the name of the comment that can be applied to the file. Don't quote or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33m# +argocd:skip-file-rendering[0m
+Expected one of:
+- [34m+argocd:skip-file-rendering[0m
+- [34m# +argocd:skip-file-rendering[0m
+
+  Match: # +argocd:skip-file-rendering
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> parallelismlimit flag | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, what is the name of repository server process parameter that can be used to configure how many manifests generations can run concurrently?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 word.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mparallelismlimit[0m
+Expected one of:
+- [34m--parallelismlimit[0m
+- [34mparallelismlimit[0m
+
+  Match: parallelismlimit
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> ARGOCD_GIT_ATTEMPTS_COUNT env var | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, what is the name of repository server environment variable that can be set on Argo CD repository server process, in order to retry 'git ls-remote' calls when they fail.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 word.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33margocd_git_attempts_count[0m
+- Expected: [34margocd_git_attempts_count[0m
+  Match: argocd_git_attempts_count
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> repo-cache-expiration duration flag | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, what is the name of the repository server process parameter that controls how long the respository server maintains its cache of generated manifests?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 word.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33m--repo-cache-expiration[0m
+Expected one of:
+- [34mrepo-cache-expiration[0m
+- [34m--repo-cache-expiration[0m
+
+  Match: --repo-cache-expiration
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> ARGOCD_EXEC_TIMEOUT env var | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, what is the name of the repository server environment variable that controls how long Argo CD waits while it executes config management tools such as helm or kustomize?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 word.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33margocd_exec_timeout[0m
+- Expected: [34margocd_exec_timeout[0m
+  Match: argocd_exec_timeout
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> status-processors | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, what is the name of the application controller process parameter that controls the number of status processors for each queue?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 word.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mstatus-processors[0m
+Expected one of:
+- [34m--status-processors[0m
+- [34mstatus-processors[0m
+
+  Match: status-processors
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> default # of status-processors | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, in Argo CD application controller, what is default number of status processors for each queue?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 number.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33m20[0m
+- Expected: [34m20[0m
+  Match: 20
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> operator-processors | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, what is the name of the application controller process parameter that controls the number of operator processors for each queue?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 word.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33m--operation-processors[0m
+Expected one of:
+- [34m--operation-processors[0m
+- [34moperation-processors[0m
+
+  Match: --operation-processors
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> default # of operator-processors | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, in Argo CD application controller, what is default number of operator processors for each queue?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 number.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33m10[0m
+- Expected: [34m10[0m
+  Match: 10
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> --repo-server-timeout-seconds | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, what is the name of application controller process parameter that controls the amount of time that application controller will wait for repo server to perform manifest generation, before a context deadline exceeded is returned.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 word.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33m--repo-server-timeout-seconds[0m
+Expected one of:
+- [34m--repo-server-timeout-seconds[0m
+- [34mrepo-server-timeout-seconds[0m
+
+  Match: --repo-server-timeout-seconds
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> default git poll time | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, what is the default interval that Argo CD will wait between polls of Git?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 word, expressed as a duration string (e.g. 60s, 1m, 1h, etc).
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33m3m[0m
+- Expected: [34m3m[0m
+  Match: 3m
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> timeout.reconciliation | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, what is the name of the setting that can be specified in argocd-cm ConfigMap which controls how often Argo CD will poll git?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 word.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mtimeout.reconciliation[0m
+- Expected: [34mtimeout.reconciliation[0m
+  Match: timeout.reconciliation
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> ARGOCD_CONTROLLER_REPLICAS env var | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, what is the name of the environment variable which can be specified on application controller which enables sharding and tells the application controller how many shards it should use?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 word.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33margocd_controller_replicas[0m
+- Expected: [34margocd_controller_replicas[0m
+  Match: argocd_controller_replicas
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> ARGO_CD_UPDATE_CLUSTER_INFO_TIMEOUT env var | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, what is the name of the environment variable which can be set on application controller process to control the interval between cluster information updates?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 word.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33margo_cd_update_cluster_info_timeout[0m
+- Expected: [34margo_cd_update_cluster_info_timeout[0m
+  Match: argo_cd_update_cluster_info_timeout
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> --sharding-method parameter | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, what is the name of the application controller process parameter that can be set to control the sharding method?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 word.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33msharding-method[0m
+Expected one of:
+- [34m--sharding-method[0m
+- [34msharding-method[0m
+
+  Match: sharding-method
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> ARGOCD_CONTROLLER_SHARDING_ALGORITHM env var | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, what is the name of the environment variable that can be set on the application controller process parameter to control the sharding method?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 word.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33margocd_controller_sharding_algorithm[0m
+- Expected: [34margocd_controller_sharding_algorithm[0m
+  Match: argocd_controller_sharding_algorithm
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> lightweight-hashing sharding method | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or false: 'lightweight-hashing' is the name of a supported sharding method in Argo CD, when configuring Argo CD Application Controller via parameter or environment variables
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> legacy sharding method | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or false: 'legacy' is the name of a supported sharding method in Argo CD, when configuring Argo CD Application Controller via parameter or environment variables
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mt[0m
+- Expected: [34mt[0m
+  Match: t
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> fixed-hashing sharding method | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or false: 'fixed-hashing' is the name of a supported sharding method in Argo CD, when configuring Argo CD Application Controller via parameter or environment variables
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> constant-hashing sharding method | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or false: 'constant-hashing' is the name of a supported sharding method in Argo CD, when configuring Argo CD Application Controller via parameter or environment variables
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> scalable-hashing sharding method | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or false: 'scalable-hashing' is the name of a supported sharding method in Argo CD, when configuring Argo CD Application Controller via parameter or environment variables
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> scalable sharding method | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or false: 'scalable' is the name of a supported sharding method in Argo CD, when configuring Argo CD Application Controller via parameter or environment variables
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> lightweight sharding method | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or false: 'lightweight' is the name of a supported sharding method in Argo CD, when configuring Argo CD Application Controller via parameter or environment variables
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> round-robin sharding method | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or false: 'round-robin' is the name of a supported sharding method in Argo CD, when configuring Argo CD Application Controller via parameter or environment variables
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mt[0m
+- Expected: [34mt[0m
+  Match: t
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> consistent-hashing sharding method | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or false: 'consistent-hashing' is the name of a supported sharding method in Argo CD, when configuring Argo CD Application Controller via parameter or environment variables
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mt[0m
+- Expected: [34mt[0m
+  Match: t
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> fixed sharding method | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or false: 'fixed' is the name of a supported sharding method in Argo CD, when configuring Argo CD Application Controller via parameter or environment variables
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> constant sharding method | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or false: 'constant' is the name of a supported sharding method in Argo CD, when configuring Argo CD Application Controller via parameter or environment variables
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> WORKQUEUE_BUCKET_SIZE env var | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, what is the name of the environment variable which enable a bucket-based rate limiter that prevents a large number of apps from being queued at the same time, and controls the size of that bucket? I am specifically looking for the name of the env var that controls the size of the that bucket.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 word.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mworkqueue_bucket_size[0m
+- Expected: [34mworkqueue_bucket_size[0m
+  Match: workqueue_bucket_size
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> WORKQUEUE_BUCKET_QPS env var | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, what is the name of the environment variable which enable a bucket-based rate limiter that prevents a large number of apps from being queued at the same time, and controls the number of items that can be queried per second? I am specifically looking for the name of the env var that controls the number of items that can be queried per second.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 word.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mworkqueue_bucket_qps[0m
+- Expected: [34mworkqueue_bucket_qps[0m
+  Match: workqueue_bucket_qps
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/high_availability.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/' -> ARGOCD_K8SCLIENT_RETRY_MAX env var | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, what is the name of the environment variable which can be used to set the maximum number of retries for k8s requests? 
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 word.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33margocd_k8sclient_retry_max[0m
+- Expected: [34margocd_k8sclient_retry_max[0m
+  Match: argocd_k8sclient_retry_max
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> 'argocd.argoproj.io/sync-options: Prune=false' annotation can prevent pruning of resource | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster. There is a kubernetes resource that I am deploying, which I don't want to be pruned under any circumstances.
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name and value of the annotation that I can add to '.metadata.annotations' for a resource, to prevent it from being pruned?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name and value of the annotation to add. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33margocd.argoproj.io/sync-options: prune=false[0m
+- Expected: [34margocd.argoproj.io/sync-options: prune=false[0m
+  Match: argocd.argoproj.io/sync-options: prune=false
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> 'argocd.argoproj.io/sync-options: Prune=confirm' annotation can be used to require confirmation of pruning | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster. There is a kubernetes resource that I am deploying, which I don't want to be pruned except when I manually confirm it should be pruned.
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name of the Argo CD annotation that I can add to '.metadata.annotations' for a resource, to require manual confirmation before that resource is pruned? Provide the annotation specific to prune behaviour.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name and value of the annotation to add. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33margocd.argoproj.io/sync-options: prune=confirm[0m
+- Expected: [34margocd.argoproj.io/sync-options: prune=confirm[0m
+  Match: argocd.argoproj.io/sync-options: prune=confirm
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> 'argocd.argoproj.io/sync-options: Validate=false' annotation can be used to require kubectl apply with --validate=false | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster. There is a kubernetes resource that I am deploying, which requires that is be applied using 'kubectl apply' with the '--validate=false' flag.
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name of the Argo CD annotation that I can add to '.metadata.annotations' for a resource, to require that that resource is applied with the '--validate=false' flag of 'kubectl apply'?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name and value of the annotation to add. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33margocd.argoproj.io/sync-options: validate=false[0m
+- Expected: [34margocd.argoproj.io/sync-options: validate=false[0m
+  Match: argocd.argoproj.io/sync-options: validate=false
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> 'argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true' annotation can be used to skip missing resources on dry run | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster. One of the resources I am deploying is a custom kubernetes resource which is defined via CustomResourceDefinition.
+[2;1m>[22;22m 
+[2;1m>[22;22m However, Argo CD has not yet deployed the CustomResourceDefinition for the resource. This means Argo CD returns an error when I attempt to deploy my custom resource.
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name of the Argo CD annotation that I can add to '.metadata.annotations' for a resource, to skip dry run for that resource so that Argo CD will still attempt to deploy that resource?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name and value of the annotation to add. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33margocd.argoproj.io/sync-options: skipdryrunonmissingresource=true[0m
+- Expected: [34margocd.argoproj.io/sync-options: skipdryrunonmissingresource=true[0m
+  Match: argocd.argoproj.io/sync-options: skipdryrunonmissingresource=true
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> Application spec.syncPolicy.syncOptions[SkipDryRunOnMissingResource=true] can be used to skip all missing resources for an Application | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster. One of the resources I am deploying is a custom kubernetes resource which is defined via CustomResourceDefinition (CRD).
+[2;1m>[22;22m 
+[2;1m>[22;22m However, Argo CD has not yet deployed the CustomResourceDefinition for the resource. This means Argo CD returns an error when I attempt to deploy my custom resource.
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name of the Argo CD sync option that I can add to 'spec.syncPolicy.syncOptions' of an Argo CD Application, to skip dry run for all resources in that Application, so that Argo CD will still attempt to deploy any resources which are missing the CRD?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name and value of the sync option to add. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mskipdryrunonmissingresource=true[0m
+- Expected: [34mskipdryrunonmissingresource=true[0m
+  Match: skipdryrunonmissingresource=true
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> 'argocd.argoproj.io/sync-options: Delete=false' annotation can be added to prevent deletion | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m For one of the resources I am deploying, I don't want that resource to be deleted when the parent Argo CD Application (that contains the resource) is deleted.
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name of the Argo CD annotation that I can add to '.metadata.annotations' for a resource, to prevent that resource from being cleaned up when the Argo CD Application is deleted?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name and value of the annotation to add. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33margocd.argoproj.io/sync-options: delete=false[0m
+- Expected: [34margocd.argoproj.io/sync-options: delete=false[0m
+  Match: argocd.argoproj.io/sync-options: delete=false
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> 'argocd.argoproj.io/sync-options: Delete=confirm' annotation can be added to require deletion confirmation | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m For one of the resources I am deploying, I don't want that resource to be deleted without manual confirmation.
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name of the Argo CD annotation that I can add to '.metadata.annotations' for a resource, to prevent that resource from being deleted without manual confirmation?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name and value of the annotation to add. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33margocd.argoproj.io/sync-options: delete=confirm[0m
+- Expected: [34margocd.argoproj.io/sync-options: delete=confirm[0m
+  Match: argocd.argoproj.io/sync-options: delete=confirm
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> spec.syncPolicy.syncOptions[ApplyOutOfSyncOnly=true] can be used to enable selective sync | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m I am deploying thousands of objects, which means it can take a long time for Argo CD to sync all those objects (and also puts pressure on API server).
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name of the Argo CD sync option that I can add to Application's 'spec.syncPolicy.syncOptions' field, to ensure that Argo CD only attempts to sync resources that are out of sync?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name and value of the sync policy to add. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mapplyoutofsynconly=true[0m
+- Expected: [34mapplyoutofsynconly=true[0m
+  Match: applyoutofsynconly=true
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> 'argocd.argoproj.io/sync-options: PruneLast=true' annotation can be added to trigger prune as final, implicit wave of sync | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name of the Argo CD annotation that I can add to a resource's '.metadata.annotations' field to trigger the pruning of that resource as a final, implicit wave of a sync operation (after all other resources are synced/healthy)?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name and value of the annotation to add. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33margocd.argoproj.io/sync-options: prunelast=true[0m
+- Expected: [34margocd.argoproj.io/sync-options: prunelast=true[0m
+  Match: argocd.argoproj.io/sync-options: prunelast=true
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> spec.syncPolicy.syncOptions[PruneLast=true] on Application can be used to trigger prune as final, implicit wave of sync | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name of the Argo CD sync option that I can add to Application's 'spec.syncPolicy.syncOptions' field to trigger the pruning of resources as a final, implicit wave of a sync operation (after all other resources are synced/healthy)?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name and value of the sync policy to add. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mprunelast=true[0m
+- Expected: [34mprunelast=true[0m
+  Match: prunelast=true
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> 'argocd.argoproj.io/sync-options: Replace=true' annotation can be added to enable replace, rather than apply, on a resource | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name of the Argo CD annotation that I can add to '.metadata.annotations' of a resource, to use 'kubectl replace' rather than 'kubectl apply', when modifying that resource (when it is out of sync).
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name and value of the annotation to add. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33margocd.argoproj.io/sync-options: replace=true[0m
+- Expected: [34margocd.argoproj.io/sync-options: replace=true[0m
+  Match: argocd.argoproj.io/sync-options: replace=true
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> spec.syncPolicy.syncOptions[Replace=true] can be used to enable replace, rather than apply, on an Application | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name of the Argo CD sync option that I can add to Application's 'spec.syncPolicy.syncOptions' field, to use 'kubectl replace' rather than 'kubectl apply' when modifying resources that are out of sync.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name and value of the sync policy to add. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mreplace=true[0m
+- Expected: [34mreplace=true[0m
+  Match: replace=true
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> 'argocd.argoproj.io/sync-options: ServerSideApply=true' annotation can be used to enable server side apply | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name of the Argo CD annotation that I can add to an individual resource's '.metadata.annotations' field, to trigger server side apply for that resource?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name and value of the annotation to add. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33margocd.argoproj.io/sync-options: serversideapply=true[0m
+- Expected: [34margocd.argoproj.io/sync-options: serversideapply=true[0m
+  Match: argocd.argoproj.io/sync-options: serversideapply=true
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> 'argocd.argoproj.io/sync-options: ServerSideApply=false' annotation can be used to disable server side apply | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name of the Argo CD annotation that I can add to an individual resource's '.metadata.annotations' field, to disable server side apply for that resource (when the Application that resource is part of has it enabled?)
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name and value of the annotation to add. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33margocd.argoproj.io/sync-options: serversideapply=false[0m
+- Expected: [34margocd.argoproj.io/sync-options: serversideapply=false[0m
+  Match: argocd.argoproj.io/sync-options: serversideapply=false
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> spec.syncPolicy.syncOptions[ServerSideApply=true] can be used to enabled server side apply | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name of the Argo CD sync option that I can add to Application's 'spec.syncPolicy.syncOptions' field, to use server side apply, when modifying resources that are out of sync.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name and value of the sync policy to add. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mserversideapply=true[0m
+- Expected: [34mserversideapply=true[0m
+  Match: serversideapply=true
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> Replace=true takes precedence over ServerSideApply=true | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or false: When deploying resources via Argo CD, the ServerSideApply=true sync option takes precedence over Replace=true sync option.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> Argo CD can use server side apply to patch existing resources on the cluster that are not fully managed by Argo CD. | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m True or false: Argo CD does not currently support the patching of existing resources on the cluster that are not already fully managed by Argo CD.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> FailOnSharedResource=true can be used to fail the sync if there are shared resources | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name of the Argo CD sync option that I can add to Application's 'spec.syncPolicy.syncOptions' field, to tell Argo CD to fail the sync operation if Argo CD detects that there are resources shared between multiple Argo CD Applications deploying to a cluster?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name and value of the sync policy to add. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mfailonsharedresource=true[0m
+- Expected: [34mfailonsharedresource=true[0m
+  Match: failonsharedresource=true
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> RespectIgnoreDifferences can be enabled to respect ignore differences during sync | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name of the Argo CD sync option that I can add to Application's 'spec.syncPolicy.syncOptions' field, to tell Argo CD to consider the configurations made in the Application's '.spec.ignoreDifferences' field during the sync stage (that is, not JUST when computing the diff between the live and desired state).
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name and value of the sync policy to add. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mrespectignoredifferences=true[0m
+- Expected: [34mrespectignoredifferences=true[0m
+  Match: respectignoredifferences=true
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> CreateNamespace=true will create a target namespace if needed | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name of the Argo CD sync option that I can add to Application's 'spec.syncPolicy.syncOptions' field, to tell Argo CD to create the namespace specified in the spec.destination.namespace if it doesn't exist?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name and value of the sync policy to add. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mcreatenamespace=true[0m
+- Expected: [34mcreatenamespace=true[0m
+  Match: createnamespace=true
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/user-guide/sync-options.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/' -> namespace metadata can be specified via .spec.syncPolicy.managedNamespaceMetadata | labels:  [simple] ]
+
+[2;1m>[22;22m I am using Argo CD to deploy resources to my kubernetes cluster.
+[2;1m>[22;22m 
+[2;1m>[22;22m What is the name of the Argo CD Application field that can be used to add labels/annotations to Namespaces that are created via the 'Namespace=True' sync option?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name of the field in the Argo CD Application resource. Dont quote the answer or use markdown.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mmanagednamespacemetadata[0m
+Expected one of:
+- [34mmanagednamespacemetadata[0m
+- [34mspec.syncpolicy.managednamespacemetadata[0m
+- [34m.spec.syncpolicy.managednamespacemetadata[0m
+
+  Match: managednamespacemetadata
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/user-management/index.md
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/' -> name of admin user | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, in the context of user management, what is the name of the built-in user that has full access to the system?
+[2;1m>[22;22m Provide ONLY the answer. The answer is 1 word.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33madmin[0m
+- Expected: [34madmin[0m
+  Match: admin
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/user-management/index.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/' -> max length of local user username | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, in the context of user management, what is the maximum length of a local account's username?
+[2;1m>[22;22m Provide ONLY the answer. The answer is a single number.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33m32[0m
+- Expected: [34m32[0m
+  Match: 32
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/user-management/index.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/' -> detect valid local user configuration | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m The following is a simplified Argo CD ConfigMap 'argocd-cm', which can be used to configure local user accounts in Argo CD.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or false: This is a valid example of how to configure Argo CD 'argocd-cm' ConfigMap for enabling a local user account named 'dave':
+[2;1m>[22;22m ```yaml
+[2;1m>[22;22m apiVersion: v1
+[2;1m>[22;22m kind: ConfigMap
+[2;1m>[22;22m metadata:
+[2;1m>[22;22m   name: argocd-cm
+[2;1m>[22;22m   namespace: argocd
+[2;1m>[22;22m data:
+[2;1m>[22;22m   accounts.dave: apiKey, login
+[2;1m>[22;22m 
+[2;1m>[22;22m   # (...other config map data...)
+[2;1m>[22;22m ```
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mt[0m
+- Expected: [34mt[0m
+  Match: t
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/user-management/index.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/' -> detect typo in local user configuration | labels:  [true-or-false simple] ]
+
+[2;1m>[22;22m The following is a simplified Argo CD ConfigMap 'argocd-cm', which can be used to configure local user accounts in Argo CD.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or false: This is a valid example of how to configure Argo CD 'argocd-cm' ConfigMap for enabling a local user account named 'dave':
+[2;1m>[22;22m ```yaml
+[2;1m>[22;22m apiVersion: v1
+[2;1m>[22;22m kind: ConfigMap
+[2;1m>[22;22m metadata:
+[2;1m>[22;22m   name: argocd-cm
+[2;1m>[22;22m   namespace: argocd
+[2;1m>[22;22m data:
+[2;1m>[22;22m   account.dave: apiKey, login
+[2;1m>[22;22m 
+[2;1m>[22;22m   # (...other config map data...)
+[2;1m>[22;22m ```
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/user-management/index.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/' -> name of ConfigMap that should be used to enable dex sso | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, what is the name of the ConfigMap that should be modified in order to enable SSO via dex?
+[2;1m>[22;22m   			Provide ONLY the answer.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33margocd-cm[0m
+- Expected: [34margocd-cm[0m
+  Match: argocd-cm
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/user-management/index.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/' -> name of the field in argocd-cm Configmap that should be modified for dex sso | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, the 'argocd-cm' ConfigMap can be modified in order to enable SSO support via dex. What is the name of the field that should be modified in this ConfigMap to enable dex?
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name of the field.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33mdex.config[0m
+Expected one of:
+- [34mdex.config[0m
+- [34mdata.dex.config[0m
+- [34m.data.dex.config[0m
+
+  Match: dex.config
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/user-management/index.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/' -> detect valid dex configuration for GitHub | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m In Argo CD, the 'argocd-cm' ConfigMap can be modified in order to enable SSO support via dex. In this case, we are using dex to authenticate via GitHub.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or False: this example configuration is a correct and valid example of how to configure Argo CD to connect to GitHub using Dex:
+[2;1m>[22;22m ```yaml
+[2;1m>[22;22m apiVersion: v1
+[2;1m>[22;22m kind: ConfigMap
+[2;1m>[22;22m metadata:
+[2;1m>[22;22m   name: argocd-cm
+[2;1m>[22;22m   namespace: argocd
+[2;1m>[22;22m data:
+[2;1m>[22;22m   url: https://argocd.example.com
+[2;1m>[22;22m   dex.config: |
+[2;1m>[22;22m     connectors:
+[2;1m>[22;22m       # GitHub example
+[2;1m>[22;22m       - type: github
+[2;1m>[22;22m         id: github
+[2;1m>[22;22m         name: GitHub
+[2;1m>[22;22m         config:
+[2;1m>[22;22m           clientID: aabbccddeeff00112233
+[2;1m>[22;22m           clientSecret: $dex.github.clientSecret
+[2;1m>[22;22m           orgs:
+[2;1m>[22;22m           - name: your-github-org
+[2;1m>[22;22m   # (...)
+[2;1m>[22;22m ```
+[2;1m>[22;22m 
+[2;1m>[22;22m If the field names are not correct, or the data is not in the correct format, the answer should be false.
+[2;1m>[22;22m If the field names are correct, and the data is in the correct format, the answer should be true.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mt[0m
+- Expected: [34mt[0m
+  Match: t
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/user-management/index.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/' -> detect invalid dex configuration due to incorrect field names | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m In Argo CD, the 'argocd-cm' ConfigMap can be modified in order to enable SSO support via dex. In this case, we are using dex to authenticate via GitHub.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or False: this example configuration is a correct and valid example of how to configure Argo CD to connect to GitHub using Dex:
+[2;1m>[22;22m ```yaml
+[2;1m>[22;22m apiVersion: v1
+[2;1m>[22;22m kind: ConfigMap
+[2;1m>[22;22m metadata:
+[2;1m>[22;22m   name: argocd-cm
+[2;1m>[22;22m   namespace: argocd
+[2;1m>[22;22m data:
+[2;1m>[22;22m   url: https://argocd.example.com
+[2;1m>[22;22m   dex.config: |
+[2;1m>[22;22m     connectors:
+[2;1m>[22;22m       # GitHub example
+[2;1m>[22;22m       - type: github
+[2;1m>[22;22m         id: github
+[2;1m>[22;22m         name: GitHub
+[2;1m>[22;22m         config:
+[2;1m>[22;22m           clientAccountID: aabbccddeeff00112233
+[2;1m>[22;22m           clientAccountSecret: $dex.github.clientSecret
+[2;1m>[22;22m           orgs:
+[2;1m>[22;22m           - name: your-github-org
+[2;1m>[22;22m   # (...)
+[2;1m>[22;22m ```
+[2;1m>[22;22m 
+[2;1m>[22;22m If the field names are not correct, or the data is not in the correct format, the answer should be false.
+[2;1m>[22;22m If the field names are correct, and the data is in the correct format, the answer should be true.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/user-management/index.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/' -> detect valid OIDC Configuration with dex | labels:  [simple true-or-false] ]
+
+[2;1m>[22;22m In Argo CD, the 'argocd-cm' ConfigMap can be modified in order to enable SSO support via dex. In this case, we are using dex to authenticate via OIDC.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or False: this example configuration is a correct and valid example of how to configure Argo CD to use OIDC via dex:
+[2;1m>[22;22m ```yaml
+[2;1m>[22;22m apiVersion: v1
+[2;1m>[22;22m kind: ConfigMap
+[2;1m>[22;22m metadata:
+[2;1m>[22;22m   name: argocd-cm
+[2;1m>[22;22m   namespace: argocd
+[2;1m>[22;22m data:
+[2;1m>[22;22m   url: https://argocd.example.com
+[2;1m>[22;22m   dex.config: |
+[2;1m>[22;22m     connectors:
+[2;1m>[22;22m       - type: oidc
+[2;1m>[22;22m         id: oidc
+[2;1m>[22;22m         name: OIDC
+[2;1m>[22;22m         config:
+[2;1m>[22;22m           issuer: https://example-OIDC-provider.example.com
+[2;1m>[22;22m           clientID: aaaabbbbccccddddeee
+[2;1m>[22;22m           clientSecret: $dex.oidc.clientSecret
+[2;1m>[22;22m   # (...)
+[2;1m>[22;22m ```
+[2;1m>[22;22m 
+[2;1m>[22;22m If the field names are not correct, or the data is not in the correct format, the answer should be false.
+[2;1m>[22;22m If the field names are correct, and the data is in the correct format, the answer should be true.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mt[0m
+- Expected: [34mt[0m
+  Match: t
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/user-management/index.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/' -> detect invalid OIDC Configuration with dex | labels:  [true-or-false simple] ]
+
+[2;1m>[22;22m In Argo CD, the 'argocd-cm' ConfigMap can be modified in order to enable SSO support via dex. In this case, we are using dex to authenticate via OIDC.
+[2;1m>[22;22m 
+[2;1m>[22;22m True or False: this example configuration is a correct and valid example of how to configure Argo CD to use OIDC via dex:
+[2;1m>[22;22m ```yaml
+[2;1m>[22;22m apiVersion: v1
+[2;1m>[22;22m kind: ConfigMap
+[2;1m>[22;22m metadata:
+[2;1m>[22;22m   name: argocd-cm
+[2;1m>[22;22m   namespace: argocd
+[2;1m>[22;22m data:
+[2;1m>[22;22m   url: https://argocd.example.com
+[2;1m>[22;22m   dex.config: |
+[2;1m>[22;22m     connectors:
+[2;1m>[22;22m       - type: oidc-client
+[2;1m>[22;22m         id: oidc-client
+[2;1m>[22;22m         name: oidc-client
+[2;1m>[22;22m         config:
+[2;1m>[22;22m           issuer: https://example-provider.example.com
+[2;1m>[22;22m           clientID: aaaabbbbccccddddeee
+[2;1m>[22;22m           clientSecret: $dex.oidc.clientSecret
+[2;1m>[22;22m   # (...)
+[2;1m>[22;22m ```
+[2;1m>[22;22m 
+[2;1m>[22;22m If the field names are not correct, or the data is not in the correct format, the answer should be false.
+[2;1m>[22;22m If the field names are correct, and the data is in the correct format, the answer should be true.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer, expressed as a single letter, either `T` (true) or `F` (false). Don't write any other text.
+[2;1m>[22;22m 
+> (reference text)
+A: [33mf[0m
+- Expected: [34mf[0m
+  Match: f
+- [32;1mPASS[0;22m
+
+================================================================================
+* Retrieving content from 'https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/docs/operator-manual/user-management/index.md' [cached]
+
+[ tests from 'https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/' -> output name of 'oidc.tls.insecure.skip.verify field' | labels:  [simple] ]
+
+[2;1m>[22;22m In Argo CD, what is the name of the field that can be set in the 'argocd-cm' ConfigMap that, when set, will tell Argo CD to skip validation of TLS certificates when connecting to an OIDC provider.
+[2;1m>[22;22m 
+[2;1m>[22;22m Provide ONLY the answer. The answer is the name of the field to set in the ConfigMap.
+[2;1m>[22;22m 
+[2;1m>[22;22m 
+> (reference text)
+A: [33moidc.tls.insecure.skip.verify[0m
+Expected one of:
+- [34moidc.tls.insecure.skip.verify[0m
+- [34mdata.oidc.tls.insecure.skip.verify[0m
+
+  Match: oidc.tls.insecure.skip.verify
+- [32;1mPASS[0;22m
+
+================================================================================
+Overall Results: Passed 106, Total 108
+
+Usage Details:
+- Prompt tokens: 491794
+- Candidate tokens: 658
+- Output tokens: 0
+
+- Elapsed time: 10m12s
+
+JSON Summary: {"checksPassed":106,"checksError":0,"checksTotal":108,"modelName":"gemini-3-flash-preview"}

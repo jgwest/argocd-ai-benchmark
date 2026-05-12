@@ -1,7 +1,6 @@
 package types
 
 import (
-	"fmt"
 	"log"
 	"strings"
 	"sync"
@@ -38,12 +37,11 @@ func RunEvaluationsInParallel(evaluations []Evaluation, configuration Evaluation
 				select {
 				case e := <-inputWorkChannel:
 
-					// runResult, outStr, err := runSingleEvaluation(e, mainContext)
 					runResult, outStr, err := runSingleEvaluation(e, mainContext)
 
-					fmt.Println(strings.Repeat("=", 50))
+					configuration.Reporter.ReportIndividualResult(strings.Repeat("=", 80))
+					configuration.Reporter.ReportIndividualResult(outStr)
 
-					fmt.Println(outStr)
 					if err != nil {
 						log.Printf("Error running test on '%v': %v\n", e.Name(), err)
 					}

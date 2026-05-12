@@ -6,6 +6,8 @@ import (
 	"slices"
 	"strings"
 	"sync"
+
+	"github.com/fatih/color"
 )
 
 type EvaluationConfiguration struct {
@@ -22,6 +24,9 @@ type EvaluationConfiguration struct {
 
 	// NumberOfWorkers is the number of concurrent requests made to OpenRouter. A value of 1 will run the evaluations sequentially, which can be helpful for debugging.
 	NumberOfWorkers int
+
+	// Report implement determines how results are logged: for example, either to console out, or to file.
+	Reporter ResultReporter
 }
 
 type EvalContext struct {
@@ -54,7 +59,7 @@ func runSingleEvaluation(toEvaluateParam Evaluation, mainContext EvalContext) (E
 	if mainContext.Configuration.ProvideExternalResources {
 		for _, resourceURL := range toEvaluateParam.initial.resourceURLS {
 
-			markdownContentsFromURL, err := mainContext.resourceCache.getExternalContent(resourceURL)
+			markdownContentsFromURL, err := mainContext.resourceCache.getExternalContent(resourceURL, &ob)
 			if err != nil {
 				return EvaluationRunResult{}, ob.out, fmt.Errorf("unable to download from URL: %v", err)
 			}
@@ -84,7 +89,8 @@ func runSingleEvaluation(toEvaluateParam Evaluation, mainContext EvalContext) (E
 	ob.println()
 	lines := strings.SplitSeq(promptText, "\n")
 	for line := range lines {
-		ob.println("> " + line)
+		ob.println(color.New(color.Faint, color.Bold).Sprint(">"), line)
+		// ob.println("> " + line)
 	}
 
 	if len(markdownReferenceMaterial) > 0 && mainContext.Configuration.ProvideExternalResources {
@@ -123,7 +129,7 @@ func runSingleEvaluation(toEvaluateParam Evaluation, mainContext EvalContext) (E
 		}
 	}
 
-	ob.println("A:", responseSanitized)
+	ob.println("A:", color.New(color.FgYellow).Sprint(responseSanitized))
 
 	matches := false
 
@@ -134,12 +140,12 @@ func runSingleEvaluation(toEvaluateParam Evaluation, mainContext EvalContext) (E
 
 		if len(toEvaluateParam.exactAnswers) == 1 {
 			expectedSanitized[0] = sanitizeString(toEvaluateParam.exactAnswers[0])
-			ob.println("- Expected:", expectedSanitized[0])
+			ob.println("- Expected:", color.New(color.FgBlue).Sprint(expectedSanitized[0]))
 		} else {
 			ob.println("Expected one of:")
 			for i, answer := range toEvaluateParam.exactAnswers {
 				expectedSanitized[i] = sanitizeString(answer)
-				ob.println("-", expectedSanitized[i])
+				ob.println("-", color.New(color.FgBlue).Sprint(expectedSanitized[i]))
 			}
 			ob.println()
 
@@ -157,9 +163,9 @@ func runSingleEvaluation(toEvaluateParam Evaluation, mainContext EvalContext) (E
 
 	if matches {
 		res.EvaluationsPassed++
-		ob.println("- PASS")
+		ob.println("-", color.New(color.FgGreen, color.Bold).Sprint("PASS"))
 	} else {
-		ob.println("- FAIL")
+		ob.println("-", color.New(color.FgRed, color.Bold).Sprint("FAIL"))
 	}
 
 	res.EvaluationsRun++
@@ -169,18 +175,28 @@ func runSingleEvaluation(toEvaluateParam Evaluation, mainContext EvalContext) (E
 	return res, ob.out, nil
 }
 
-func (cache *externalResourceCache) getExternalContent(url string) (string, error) {
+func (cache *externalResourceCache) getExternalContent(url string, ob *outBuffer) (string, error) {
 
 	cache.Lock()
 	defer cache.Unlock()
 
 	val, inCache := cache.externalResourceCache[url]
 	if inCache {
-		fmt.Println("* Retrieving content from '" + url + "' [cached]")
-		return val, nil
+		if ob != nil {
+			ob.println("* Retrieving content from '" + url + "' [cached]")
+			return val, nil
+		} else {
+			fmt.Println("* Retrieving content from '" + url + "' [cached]")
+			return val, nil
+		}
 	}
 
-	fmt.Println("* Retrieving content from '" + url)
+	if ob != nil {
+		ob.println("* Retrieving content from '" + url)
+	} else {
+		fmt.Println("* Retrieving content from '" + url)
+	}
+
 	markdownContents, err := downloadURL(url)
 	if err != nil {
 		return "", fmt.Errorf("unable to download URL: '%s'. error: %v", url, err)
